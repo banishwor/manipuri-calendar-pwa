@@ -18,6 +18,29 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [showSplash, setShowSplash] = useState(true);
 
+  // PWA Install Prompt state
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('install') === 'auto' || urlParams.get('install') === 'true') {
+        setShowInstallPrompt(true);
+      }
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+
   // Active dates context
   const [currentYear, setCurrentYear] = useState(2026);
   const [currentMonth, setCurrentMonth] = useState(1);
@@ -630,6 +653,59 @@ export default function App() {
               eventsList={eventsList}
               onClose={() => setSelectedDateStr(null)}
             />
+          </motion.div>
+        )}
+
+        {/* PWA Install Prompt Overlay */}
+        {showInstallPrompt && deferredPrompt && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
+          >
+            <div className="bg-[#FDFBF7] dark:bg-[#1D1416] border border-[#E9DCC4] dark:border-[#2b1016]/50 rounded-2xl p-6 max-w-sm w-full shadow-2xl text-center">
+              <div className="flex justify-center mb-4">
+                <div className="p-3 bg-rose-50 dark:bg-rose-950/30 rounded-2xl">
+                  <CalendarIcon className="w-10 h-10 text-rose-800 dark:text-rose-400" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-[#2B0508] dark:text-rose-100 mb-2">Install Manipuri Calendar</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+                Install the application on your home screen for quick offline access, push notifications, and a full-screen standalone experience.
+              </p>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={async () => {
+                    if (deferredPrompt) {
+                      deferredPrompt.prompt();
+                      const { outcome } = await deferredPrompt.userChoice;
+                      console.log(`User response to install prompt: ${outcome}`);
+                      setDeferredPrompt(null);
+                    }
+                    setShowInstallPrompt(false);
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('install');
+                    window.history.replaceState({}, '', url.pathname + url.search);
+                  }}
+                  className="w-full py-3 bg-rose-800 hover:bg-rose-700 text-white rounded-xl font-semibold transition cursor-pointer"
+                >
+                  Install Now
+                </button>
+                <button
+                  onClick={() => {
+                    setShowInstallPrompt(false);
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('install');
+                    window.history.replaceState({}, '', url.pathname + url.search);
+                  }}
+                  className="w-full py-3 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-500 dark:text-gray-400 rounded-xl font-semibold transition cursor-pointer"
+                >
+                  Maybe Later
+                </button>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
