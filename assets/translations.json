@@ -1,0 +1,142 @@
+{
+  "months": {
+    "WAKCHING": {
+      "mayek": "ꯋꯥꯛꯆꯤꯡ",
+      "bengali": "ৱাকচিং"
+    },
+    "PHAIREN": {
+      "mayek": "ꯐꯥꯏꯔꯦꯟ",
+      "bengali": "ফাইরেন"
+    },
+    "LAMTA": {
+      "mayek": "ꯂꯝꯇꯥ",
+      "bengali": "লমতা"
+    },
+    "SAJIBU": {
+      "mayek": "ꯁꯥꯖꯤꯕꯨ",
+      "bengali": "সাজিবু"
+    },
+    "KALEN": {
+      "mayek": "ꯀꯥꯂꯦꯟ",
+      "bengali": "কালেন"
+    },
+    "INGA": {
+      "mayek": "ꯏꯉꯥ",
+      "bengali": "ইঙা"
+    },
+    "INGEN": {
+      "mayek": "ꯏꯉꯦꯟ",
+      "bengali": "ইঙেন"
+    },
+    "THAWAN": {
+      "mayek": "ꯊꯥꯋꯥꯟ",
+      "bengali": "থাৱান"
+    },
+    "LANGBAN": {
+      "mayek": "ꯂꯥꯡꯕꯥꯟ",
+      "bengali": "লাংবান"
+    },
+    "MERA": {
+      "mayek": "ꯃꯦꯔꯥ",
+      "bengali": "মেরা"
+    },
+    "HIYANGEI": {
+      "mayek": "ꯍꯤꯌꯥꯡꯒꯩ",
+      "bengali": "হিয়াঙৈ"
+    },
+    "POINU": {
+      "mayek": "ꯄꯣꯏꯅꯨ",
+      "bengali": "পোইনু"
+    }
+  },
+  "weekdays": {
+    "SUNDAY": {
+      "mayek": "ꯅꯣꯡꯃꯥꯢꯆꯤꯡ",
+      "bengali": "নোংমাইচিং"
+    },
+    "MONDAY": {
+      "mayek": "ꯅꯤꯡꯊꯧꯀꯥꯕ",
+      "bengali": "নিংথৌকাবা"
+    },
+    "TUESDAY": {
+      "mayek": "ꯂꯩꯄꯥꯛꯄꯣꯛꯄ",
+      "bengali": "লৈপাকপোকপা"
+    },
+    "WEDNESDAY": {
+      "mayek": "ꯌꯨꯝꯁꯀꯩꯁꯥ",
+      "bengali": "যুমশকেইশা"
+    },
+    "THURSDAY": {
+      "mayek": "ꯁꯥꯒꯣꯜꯁꯦꯟ",
+      "bengali": "শগোলশেন"
+    },
+    "FRIDAY": {
+      "mayek": "ꯏꯔꯥꯏ",
+      "bengali": "ইরাই"
+    },
+    "SATURDAY": {
+      "mayek": "ꯊꯥꯡꯖꯥ",
+      "bengali": "থাংজা"
+    }
+  },
+  "directions": {
+    "AWANG": {
+      "mayek": "ꯑꯋꯥꯡ",
+      "bengali": "অৱাং"
+    },
+    "MAKHA": {
+      "mayek": "ꯃꯥꯈꯥ",
+      "bengali": "মাখা"
+    },
+    "NONGPOK": {
+      "mayek": "ꯅꯣꯡꯄꯣꯛ",
+      "bengali": "নোংপোক"
+    },
+    "NONGCHUP": {
+      "mayek": "ꯅꯣꯡꯆꯨꯄ꯭",
+      "bengali": "নোংচুপ"
+    }
+  },
+  "digits": {
+    "0": {
+      "mayek": "꯰",
+      "bengali": "০"
+    },
+    "1": {
+      "mayek": "꯱",
+      "bengali": "১"
+    },
+    "2": {
+      "mayek": "꯲",
+      "bengali": "২"
+    },
+    "3": {
+      "mayek": "꯳",
+      "bengali": "৩"
+    },
+    "4": {
+      "mayek": "꯴",
+      "bengali": "৪"
+    },
+    "5": {
+      "mayek": "꯵",
+      "bengali": "৫"
+    },
+    "6": {
+      "mayek": "꯶",
+      "bengali": "৬"
+    },
+    "7": {
+      "mayek": "꯷",
+      "bengali": "৭"
+    },
+    "8": {
+      "mayek": "꯸",
+      "bengali": "৮"
+    },
+    "9": {
+      "mayek": "꯹",
+      "bengali": "৯"
+    }
+  }
+}

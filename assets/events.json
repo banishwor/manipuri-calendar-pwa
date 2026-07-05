@@ -1,0 +1,689 @@
+[
+  {
+    "id": "ayang_leima_kabok_chaiba",
+    "name": "Ayang Leima Kabok Chaiba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Meitei traditional ritual offering Kabok (puffed rice) to goddess Ayang Leima."
+  },
+  {
+    "id": "ningthou_gambhir_leikhidaba",
+    "name": "Maharaja Gambhir Singh Death Anniversary",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Death anniversary tribute to Maharaja Gambhir Singh, who liberated Manipur from Burmese rule."
+  },
+  {
+    "id": "driver_day",
+    "name": "Drivers' Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "State observance honoring the contribution of professional and transport drivers in Manipur."
+  },
+  {
+    "id": "state_hood_day",
+    "name": "Statehood Day",
+    "category": "national_holiday",
+    "isHoliday": true,
+    "description": "Celebrating the day Manipur became a full-fledged state of the Indian Union on January 21, 1972."
+  },
+  {
+    "id": "ganesh_puja",
+    "name": "Ganesh Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Ritual worship of Lord Ganesha, the remover of obstacles."
+  },
+  {
+    "id": "swrasati_puja",
+    "name": "Saraswati Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Worship of Goddess Saraswati, the deity of education, music, arts, and learning."
+  },
+  {
+    "id": "shiri_krishna_leikhidaba_numit",
+    "name": "Shree Krishna Leikhidaba Numit",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Traditional observation of the ascension of Lord Krishna."
+  },
+  {
+    "id": "gandhi_leilhidaba_numit",
+    "name": "Martyrs' Day (Gandhi Death Anniversary)",
+    "category": "national_holiday",
+    "isHoliday": false,
+    "description": "Martyrs' Day observation marking the assassination of Mahatma Gandhi."
+  },
+  {
+    "id": "valentine_day",
+    "name": "Valentine's Day",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "Celebration of love and romance."
+  },
+  {
+    "id": "sivarati",
+    "name": "Maha Shivaratri",
+    "category": "ritual",
+    "isHoliday": true,
+    "description": "Hindu festival dedicated to the worship of Lord Shiva."
+  },
+  {
+    "id": "rani_gaiding_lui_leikhidaba",
+    "name": "Rani Gaidinliu Death Anniversary",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Tribute to the prominent Rongmei Naga political and spiritual leader from Manipur."
+  },
+  {
+    "id": "saroi_khangba",
+    "name": "Saroi Khangba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Worship or ritual appeasement of evil spirits, traditionally held on the first and last Saturdays of the month of Lamta."
+  },
+  {
+    "id": "shree_govhindagi_holi_houba_numit",
+    "name": "Shree Govindaji Holi Houba Numit",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Commencement of the traditional Holi or Yaoshang festival at Shree Govindaji Temple."
+  },
+  {
+    "id": "sanaroi_singi_numit",
+    "name": "Players' Day (Sanaroisingee Numit)",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Manipur State Players' Day, celebrating the achievements and contributions of sportspersons of Manipur."
+  },
+  {
+    "id": "pechakari",
+    "name": "Pechakari Day",
+    "category": "festival_day",
+    "isHoliday": false,
+    "description": "Holi/Yaoshang celebration involving the spraying of coloured water using syringes (pechakari)."
+  },
+  {
+    "id": "hallangkar",
+    "name": "Halangkar",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "The culminating grand cultural sports procession marking the end of the Yaoshang festival."
+  },
+  {
+    "id": "baruni_chingoi_lruppa",
+    "name": "Baruni Ching Kaba (Holy Pilgrimage)",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Auspicious pilgrimage climb of Baruni Hill and ritual bathing in the sacred river."
+  },
+  {
+    "id": "kongba_laithong_fatpa",
+    "name": "Kongba Laithong Phatpa",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Sacred Meitei prophetic ritual opening the gates of river deities at Kongba river."
+  },
+  {
+    "id": "ram_navami",
+    "name": "Ram Navami",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Celebration of the birth of Lord Rama."
+  },
+  {
+    "id": "mahavir_jayanti",
+    "name": "Mahavir Jayanti",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Birth anniversary of Lord Mahavira, the 24th Tirthankara of Jainism."
+  },
+  {
+    "id": "april_fool",
+    "name": "April Fools' Day",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "General day of jokes and lighthearted pranks."
+  },
+  {
+    "id": "hanuman_pokpa",
+    "name": "Hanuman Jayanti",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Celebration of the birth of Lord Hanuman."
+  },
+  {
+    "id": "easther_sunday",
+    "name": "Easter Sunday",
+    "category": "festival_day",
+    "isHoliday": false,
+    "description": "Christian celebration of the resurrection of Jesus Christ."
+  },
+  {
+    "id": "nara_singh_leikhidaba",
+    "name": "Maharaja Nara Singh Memorial Day",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Death anniversary tribute to Maharaja Nara Singh of Manipur."
+  },
+  {
+    "id": "silhenba_sakapda_1948_houba",
+    "name": "Silhenba Sakapda Preservation Day",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Commemoration of Meitei spiritual and administrative structural adjustments."
+  },
+  {
+    "id": "akshar_tritiya",
+    "name": "Akshaya Tritiya",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Highly auspicious day for beginnings and buying gold in Hindu tradition."
+  },
+  {
+    "id": "sita_navami",
+    "name": "Sita Navami",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Worship celebrating the divine birth of Goddess Sita."
+  },
+  {
+    "id": "jatra_kali",
+    "name": "Jatra Kali Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Important ritual of Kali temple worship."
+  },
+  {
+    "id": "mothers_day",
+    "name": "Mother's Day",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "Honoring mothers and motherhood."
+  },
+  {
+    "id": "nurses_day",
+    "name": "International Nurses Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Global appreciation of the selfless service of nursing professionals."
+  },
+  {
+    "id": "world_environment_day",
+    "name": "World Environment Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Global campaign promoting environmental awareness and action."
+  },
+  {
+    "id": "jun_18",
+    "name": "Great June Uprising Day (Manipur Integrity Day)",
+    "category": "memorial",
+    "isHoliday": true,
+    "description": "Tribute to those who laid down their lives on June 18, 2001, to assert the territorial integrity of Manipur."
+  },
+  {
+    "id": "laininghel_fullo_leikhidaba",
+    "name": "Laininghal Naoriya Phullo Death Anniversary",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Remembering the founder of Apokpa Marup who revived traditional Meitei identity and scripts."
+  },
+  {
+    "id": "world_yoga_day_fathers_day",
+    "name": "International Yoga Day & Father's Day",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "Global observance of wellness through Yoga combined with Father's Day."
+  },
+  {
+    "id": "ganga_puja",
+    "name": "Ganga Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Sacred worship dedicating water offerings to goddess Ganga."
+  },
+  {
+    "id": "muharram",
+    "name": "Muharram",
+    "category": "ritual",
+    "isHoliday": true,
+    "description": "The first month of the Islamic calendar, observed with reverence."
+  },
+  {
+    "id": "mahadev_lalhou_katpa",
+    "name": "Mahadev Lalhou Katpa",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Meitei Shaivite traditional ritual and food offering to Lord Shiva."
+  },
+  {
+    "id": "sanamahi_cheng_haiba",
+    "name": "Sanamahi Cheng Haiba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Cheng Janba (Cheng Haiba) - Traditional sacred offering of fresh rice to Lainingthou Sanamahi inside home sanctums."
+  },
+  {
+    "id": "doctors_day",
+    "name": "National Doctors' Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Acknowledging the contribution of medical practitioners to our lives."
+  },
+  {
+    "id": "luxmi_keithel_kaba",
+    "name": "Ema Keithel Luxmi Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Traditional grand worship of Goddess of wealth by market mothers (Imas) of Ima Keithel."
+  },
+  {
+    "id": "ningol_palli",
+    "name": "Ningol Palli",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Traditional preservation council meeting of Meitei sisters."
+  },
+  {
+    "id": "guru_prunima",
+    "name": "Guru Purnima",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Festival dedicated to expressing gratitude to spiritual and academic mentors."
+  },
+  {
+    "id": "nag_pamchami",
+    "name": "Naag Panchami",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Traditional Hindu worship of serpent deities."
+  },
+  {
+    "id": "hirosima_numit",
+    "name": "Hiroshima Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Remembering victims of the atomic bombing of Hiroshima."
+  },
+  {
+    "id": "nagashakhi_numit",
+    "name": "Nagasaki Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Remembering atomic bomb victims of Nagasaki."
+  },
+  {
+    "id": "meitei_longi_numit",
+    "name": "Meetei Longi Numit (Meitei Language Day)",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Celebrating the day Manipuri language was included in the 8th Schedule of Indian Constitution."
+  },
+  {
+    "id": "milad_un_nabi",
+    "name": "Milad-un-Nabi",
+    "category": "ritual",
+    "isHoliday": true,
+    "description": "The anniversary of the birth and death of Prophet Muhammad."
+  },
+  {
+    "id": "chaklam_khongchat",
+    "name": "Chaklam Khongchat (Hunger Marchers' Day)",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Commemoration of the historic hunger march uprising in Imphal against food scarcity (August 27, 1965)."
+  },
+  {
+    "id": "raksha_bandhan",
+    "name": "Raksha Bandhan",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "Celebrating the sacred bond and protection between brothers and sisters."
+  },
+  {
+    "id": "hai_pou_jadonang_leikhidaba_numit",
+    "name": "Haipou Jadonang Martyrdom Day",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Remembering the legendary Zeliangrong freedom fighter Haipou Jadonang hanged by the British."
+  },
+  {
+    "id": "laininghal_fully_pokpa",
+    "name": "Laininghal Naoriya Phullo Birth Anniversary",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Celebrating the birth and reformative mission of Laininghal Naoriya Phullo."
+  },
+  {
+    "id": "krishna_jarma",
+    "name": "Janmashtami (Krishna Janma)",
+    "category": "ritual",
+    "isHoliday": true,
+    "description": "Birth celebration of Lord Sri Krishna."
+  },
+  {
+    "id": "teachers_day",
+    "name": "Teachers' Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Marking the birth anniversary of Dr. Sarvepalli Radhakrishnan in honor of our teachers."
+  },
+  {
+    "id": "ganesh_chaturdhashi",
+    "name": "Ganesh Chaturthi",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Celebration of intelligence and wisdom of Lord Ganesha."
+  },
+  {
+    "id": "vishwakarma_puja",
+    "name": "Vishwakarma Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Worship of the divine architect and craftsman deity."
+  },
+  {
+    "id": "radha_jarma",
+    "name": "Radhashtami",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Birth anniversary of Goddess Radha."
+  },
+  {
+    "id": "braman_janama",
+    "name": "Brahman Janama",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Auspicious Hindu calendar ritual day."
+  },
+  {
+    "id": "tarpan_houba",
+    "name": "Langban Tarpan Houba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Commencement of ancestor tribute period during the month of Langban."
+  },
+  {
+    "id": "tarpan_loiba",
+    "name": "Langban Tarpan Loiba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Culmination of traditional ancestral water offerings."
+  },
+  {
+    "id": "mera_chouren_houba",
+    "name": "Mera Chaoren Houba",
+    "category": "ritual",
+    "isHoliday": true,
+    "description": "Indigenous festival celebrating common roots of hill and valley peoples."
+  },
+  {
+    "id": "bor_numit",
+    "name": "Mera Bor Numit",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "The special day of receiving blessings (Bor) during Durga Puja festivities."
+  },
+  {
+    "id": "police_day_kwak_tanba",
+    "name": "Manipur Police Day & Kwak Tanba",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "Manipur Police Raising Day accompanied by Kwak Tanba (traditional ritual chasing away crows)."
+  },
+  {
+    "id": "u_n_day",
+    "name": "United Nations Day",
+    "category": "commemoration",
+    "isHoliday": false,
+    "description": "United Nations Day celebrating international peace."
+  },
+  {
+    "id": "mera_hou_chongba",
+    "name": "Mera Houchongba",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "Grand traditional festival uniting Meiteis and the hill tribes."
+  },
+  {
+    "id": "meitei_puya_meithaba",
+    "name": "Puya Meithaba Day",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Remembrance Day for the burning of ancient Meitei scriptures (Puya) in the 18th century."
+  },
+  {
+    "id": "gorbardhan_puja",
+    "name": "Govardhan Puja",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Traditional offering dedicated to Giriraj Govardhan hill."
+  },
+  {
+    "id": "childrens_day",
+    "name": "Children's Day",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "Celebrating the joy, rights, and potential of children."
+  },
+  {
+    "id": "san_senba",
+    "name": "Sanshenba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Traditional autumn pastoral cow herd celebration at Govindaji temple."
+  },
+  {
+    "id": "tulsi_bhiva_hari_uthan",
+    "name": "Tulsi Vivah & Hari Uthana",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Ritual wedding of the Tulsi plant to Vishnu, signaling the start of the Hindu wedding season."
+  },
+  {
+    "id": "mera_wa_fukpa",
+    "name": "Mera Wa-Fukpa",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Ancient ritual closing ceremony of Mera month's sky lantern (Mera Thaomei)."
+  },
+  {
+    "id": "bye_bye",
+    "name": "New Year's Eve",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "The final day of the Gregorian year."
+  },
+  {
+    "id": "new_year",
+    "name": "New Year's Day",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The first day of the year in the Gregorian calendar, celebrated worldwide."
+  },
+  {
+    "id": "gaan_ngai",
+    "name": "Gaan-Ngai",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The premier post-harvest festival of the Zeliangrong community (Rongmei, Liangmai, and Zeme tribes) of Manipur, Assam, and Nagaland, marked by thanksgiving, cultural dances, music, and sports."
+  },
+  {
+    "id": "2nd_saturday",
+    "name": "Second Saturday Bank Holiday",
+    "category": "holiday",
+    "isHoliday": true,
+    "description": "Monthly bank holiday observed across Manipur and India on the second Saturday of every month."
+  },
+  {
+    "id": "republic_day",
+    "name": "Republic Day",
+    "category": "national_holiday",
+    "isHoliday": true,
+    "description": "National holiday of India, celebrating the adoption of the Constitution on January 26, 1950."
+  },
+  {
+    "id": "lui_ngai_ni",
+    "name": "Lui-Ngai-Ni",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The collective seed-sowing festival of all Naga tribes of Manipur, celebrated on February 15 to seek blessings for a bountiful crop and foster unity."
+  },
+  {
+    "id": "yaoshang_meithaba",
+    "name": "Yaoshang (Holi) Meithaba",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The premier spring festival of Manipur, starting with the burning of a sacred straw hut (Meithaba) on the full moon of Lamta, celebrated with sports, Thabal Chongba dance, and colors.",
+    "blogUrl": "https://baniat.blogspot.com/2026/03/the-true-origins-of-yaoshang.html"
+  },
+  {
+    "id": "cheiraoba",
+    "name": "Sajibu Nongma Panba (Cheiraoba)",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The traditional lunar New Year of the Meitei people, celebrated on the first day of the Sajibu month with ritualistic food offerings, prayers, and climbing sacred hilltops."
+  },
+  {
+    "id": "meitei_cheiraoba",
+    "name": "Meitei Cheiraoba",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The traditional Meitei New Year celebration marking the seasonal transition with family feasts and climbing Cheirao Ching hill."
+  },
+  {
+    "id": "eid_ul_fitr",
+    "name": "Eid-ul-Fitr",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "A major Islamic festival celebrated by the Meitei Pangal (Muslim) community and Muslims worldwide, marking the conclusion of the holy month of fasting (Ramadan)."
+  },
+  {
+    "id": "good_friday",
+    "name": "Good Friday",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "Christian holiday commemorating the crucifixion and death of Jesus Christ at Calvary."
+  },
+  {
+    "id": "khongjom_day",
+    "name": "Khongjom Day",
+    "category": "memorial",
+    "isHoliday": true,
+    "description": "Observed on April 23 to pay solemn tribute to the brave Manipuri soldiers, led by Major Paona Brajabashi, who fought valiantly against British forces in the historic Battle of Khongjom (1891)."
+  },
+  {
+    "id": "eid_ul_adha",
+    "name": "Eid-ul-Adha",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The Feast of Sacrifice, celebrated by Muslims with special prayers, charity, and sharing of meals."
+  },
+  {
+    "id": "kang_chingba",
+    "name": "Kang Chingba (Rath Yatra)",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The spectacular 10-day Chariot Festival celebrated with immense devotion at the Shree Shree Govindaji Temple, where deities are taken out in grand wooden chariots."
+  },
+  {
+    "id": "kanglen",
+    "name": "Kanglen",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The closing ceremony (Purnayatra) of the Rath Yatra festival in Manipur, marked by special ritual songs, dances, and feasts."
+  },
+  {
+    "id": "patriot_day",
+    "name": "Patriots' Day",
+    "category": "memorial",
+    "isHoliday": true,
+    "description": "Observed on August 13 to honor the martyrs of Manipur, including Bir Tikendrajit and Thangal General, who were hanged by the British in 1891 for defending Manipur's sovereignty."
+  },
+  {
+    "id": "independence_day",
+    "name": "Independence Day",
+    "category": "national_holiday",
+    "isHoliday": true,
+    "description": "National holiday celebrating India's independence from British rule on August 15, 1947."
+  },
+  {
+    "id": "irabot_day",
+    "name": "Irabot Day",
+    "category": "memorial",
+    "isHoliday": true,
+    "description": "Observed on September 30 to commemorate the birth anniversary of Jananeta Hijam Irabot, a pioneer social reformer, politician, writer, and freedom fighter of Manipur."
+  },
+  {
+    "id": "gandhi_jayanti",
+    "name": "Gandhi Jayanti",
+    "category": "national_holiday",
+    "isHoliday": true,
+    "description": "National holiday celebrating the birth anniversary of Mahatma Gandhi, the pioneer of non-violent resistance."
+  },
+  {
+    "id": "durga_puja",
+    "name": "Durga Puja",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "Grand celebration of the victory of Goddess Durga over the demon king Mahishasura, symbolizing the triumph of good over evil."
+  },
+  {
+    "id": "diwali",
+    "name": "Diwali",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The festival of lights, celebrating the spiritual victory of light over darkness and good over evil."
+  },
+  {
+    "id": "ningol_chakouba_numit",
+    "name": "Ningol Chakkouba",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The most grand and beloved festival of Manipur, celebrated on the second day of the Hiyangei month, where married sisters (Ningols) are invited to their parental homes for a magnificent traditional feast and presented with gifts."
+  },
+  {
+    "id": "nupi_lan",
+    "name": "Nupi Lan Memorial Day",
+    "category": "memorial",
+    "isHoliday": true,
+    "description": "Observed on December 12 to pay tribute to the historic women's uprisings of Manipur (1904 and 1939) against administrative exploitation and artificial food scarcity."
+  },
+  {
+    "id": "christmas",
+    "name": "Christmas",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The annual Christian festival celebrating the birth of Jesus Christ, widely celebrated by the hill communities of Manipur."
+  },
+  {
+    "id": "yaoshang_2nd",
+    "name": "Yaoshang 2nd Day",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The second day of the Yaoshang festival, featuring community sports, cultural programs, and traditional celebrations."
+  },
+  {
+    "id": "may_day",
+    "name": "May Day",
+    "category": "holiday",
+    "isHoliday": true,
+    "description": "International Workers' Day, celebrating the achievements of workers and laborers."
+  },
+  {
+    "id": "kut",
+    "name": "Kut",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "The post-harvest festival of the Kuki-Chin-Mizo communities of Manipur, celebrated with traditional dances, songs, and beauty pageants."
+  },
+  {
+    "id": "heikru_hidongba",
+    "name": "Heikru Hidongba",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "Traditional boat race festival celebrated on the moat of the Bijoy Govinda Temple in Imphal on the 11th day of the Langban month."
+  }
+]
