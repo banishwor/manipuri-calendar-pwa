@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#800E13" />
+      <stop offset="100%" stop-color="#3A0007" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBD15B" />
+      <stop offset="100%" stop-color="#D4AF37" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#crimsonGrad)" stroke="#D4AF37" stroke-width="12" />
+  <!-- Meitei Lunar Crescent -->
+  <path d="M 360,120 C 200,120 200,392 360,392 C 240,360 240,152 360,120 Z" fill="url(#goldGrad)" />
+  <!-- Glowing star -->
+  <path d="M 340,240 L 350,250 L 375,256 L 350,262 L 340,272 L 334,262 L 309,256 L 334,250 Z" fill="#FFF" opacity="0.9" />
+  <circle cx="340" cy="256" r="3" fill="#FFF" />
+</svg>

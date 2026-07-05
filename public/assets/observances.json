@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ekadasi",
+    "name": "Ekadasi",
+    "description": "The eleventh day of the waxing (Shajik) or waning (Khei) lunar cycle."
+  },
+  {
+    "id": "purnima",
+    "name": "Purnima",
+    "description": "The 15th lunar day, representing the Full Moon (Mera/Purnima)."
+  },
+  {
+    "id": "thasi",
+    "name": "Thasi",
+    "description": "The 30th lunar day, representing the New Moon / Dark Moon (Amavasya)."
+  }
+]
