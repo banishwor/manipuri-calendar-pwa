@@ -399,7 +399,7 @@ export default function App() {
       : 'ꯂꯣꯗ ꯇꯧꯔꯤ...';
 
     return (
-      <div className="fixed inset-0 z-50 bg-[#FDFBF7] text-[#2B0508] flex flex-col items-center justify-between p-6 md:p-8 overflow-hidden select-none">
+      <div className="fixed inset-0 z-50 bg-[#FDFBF7] text-[#2B0508] flex flex-col items-center justify-between px-6 pb-6 pt-safe-lg md:p-8 overflow-hidden select-none">
         {/* Soft, safe time greeting at top */}
         <div className="pt-8 text-center flex flex-col gap-1">
           <span className="text-xl font-black tracking-wider text-rose-900 leading-none">
@@ -519,7 +519,7 @@ export default function App() {
       </header>
 
       {/* Main Responsive Body Container */}
-      <main className="flex-1 w-full max-w-2xl mx-auto px-4 py-4 md:py-6 overflow-hidden">
+      <main className="flex-1 w-full max-w-2xl mx-auto px-4 pb-4 pt-safe md:py-6 overflow-hidden">
         {activeTab === CalendarTab.TODAY && (
           <TodayTab
             todayDay={todayDay}

@@ -1,3 +1,16 @@
 @import "tailwindcss";
 
 @variant dark (&:where(.dark, .dark *));
+
+.pt-safe {
+  padding-top: calc(1rem + env(safe-area-inset-top, 0px));
+}
+
+.pt-safe-lg {
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+

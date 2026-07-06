@@ -34,7 +34,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   return (
     <div className="fixed inset-0 bg-white dark:bg-gray-950 z-50 flex flex-col md:max-w-2xl md:mx-auto md:border-x md:border-gray-100 md:dark:border-gray-800 shadow-2xl">
       {/* Header bar */}
-      <div className="flex items-center gap-3 p-4 border-b border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-950">
+      <div className="flex items-center gap-3 px-4 pb-4 pt-safe border-b border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-950">
         <button
           onClick={onClose}
           className="p-2 -ml-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
