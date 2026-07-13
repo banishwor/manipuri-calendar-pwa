@@ -1,8 +1,11 @@
-const CACHE_NAME = 'meitei-calendar-v1.0.2';
+const CACHE_NAME = 'meitei-calendar-v1.0.3';
 const ASSETS_TO_CACHE = [
   './',
   'index.html',
   'icon.svg',
+  'logo.png',
+  'yek_salai_screenshot.jpeg',
+  'manipur_calculator_screenshot.jpeg',
   'manifest.json',
   'apple-touch-icon.png',
   'icon-192.png',
