@@ -117,3 +117,4 @@ Apple does not support web-install buttons directly inside Safari. To install:
 1. Open **Chrome** on Android and navigate to your deployed URL.
 2. Tap the **three-dot menu** in the top right.
 3. Select **Install app** (or **Add to Home Screen**).
+chec

@@ -93,6 +93,78 @@ export const AboutTab: React.FC = () => {
         </div>
       </div>
 
+      {/* Other Apps */}
+      <div className="flex flex-col gap-4">
+        <div className="py-1">
+          <h4 className="text-base font-extrabold text-rose-800 dark:text-rose-400">
+            My Other Apps
+          </h4>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Useful utilities for the Manipuri community</p>
+        </div>
+
+        {/* Yek Salai Card */}
+        <a
+          href="https://play.google.com/store/apps/details?id=com.yeksalaiapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-3xl border border-gray-105 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-5 flex flex-col sm:flex-row gap-5 shadow-sm hover:shadow-md hover:border-rose-800/20 transition-all group"
+        >
+          <div className="w-full sm:w-24 h-40 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-800">
+            <img
+              src="./yek_salai_screenshot.jpeg"
+              alt="Yek Salai Screenshot"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="flex flex-col justify-between gap-3">
+            <div className="flex flex-col gap-1.5">
+              <h5 className="text-md font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors">
+                Yek Salai - Meitei Clan
+              </h5>
+              <p className="text-xs text-gray-600 dark:text-gray-305 leading-relaxed">
+                Identify Meitei clans (Yek/Salai), look up surnames (Yumnak/Sagei), and check traditional marriage compatibility (Yek Tinnaba / Shairuk Tinnaba).
+              </p>
+            </div>
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/5 hover:bg-rose-500/10 text-rose-800 dark:text-rose-400 text-xs font-bold border border-rose-800/10 transition-colors">
+                Get on Play Store
+              </span>
+            </div>
+          </div>
+        </a>
+
+        {/* Manipur Calculator Card */}
+        <a
+          href="https://play.google.com/store/apps/details?id=com.manipurcalculator.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-3xl border border-gray-105 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-5 flex flex-col sm:flex-row gap-5 shadow-sm hover:shadow-md hover:border-rose-800/20 transition-all group"
+        >
+          <div className="w-full sm:w-24 h-40 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-800">
+            <img
+              src="./manipur_calculator_screenshot.jpeg"
+              alt="Manipur Calculator Screenshot"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="flex flex-col justify-between gap-3">
+            <div className="flex flex-col gap-1.5">
+              <h5 className="text-md font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors">
+                Manipur Calculator
+              </h5>
+              <p className="text-xs text-gray-600 dark:text-gray-305 leading-relaxed">
+                A comprehensive utility tool for the Manipuri community. Features traditional land unit converters (Pari, Lourak, Sangam), gold weight converters (San, Chaning, Tola), and various financial calculators.
+              </p>
+            </div>
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/5 hover:bg-rose-500/10 text-rose-800 dark:text-rose-400 text-xs font-bold border border-rose-800/10 transition-colors">
+                Get on Play Store
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
       {/* Mission card */}
       <div className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-6 flex flex-col gap-3 shadow-sm">
         <h4 className="text-base font-extrabold text-rose-800 dark:text-rose-400 flex items-center gap-2">

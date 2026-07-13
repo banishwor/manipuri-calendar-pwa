@@ -412,11 +412,8 @@ export default function App() {
 
         {/* Center application titles */}
         <div className="flex flex-col items-center gap-5 text-center">
-          <div className="w-40 h-40 md:w-44 md:h-44 rounded-[40px] bg-gradient-to-br from-rose-800 to-rose-950 flex items-center justify-center shadow-xl border border-rose-900/10 p-5 transform transition-transform animate-pulse">
-            <svg className="w-24 h-24 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4C12.92 3.04 12.46 3 12 3z" fill="#FBD15B" stroke="#D4AF37" strokeWidth="0.8" />
-              <path d="M17 10l1.2 1.2 3 .3-3 .3-1.2 1.2-.3-3-.3-1.2 3-.3z" fill="#FFF" />
-            </svg>
+          <div className="w-40 h-40 md:w-44 md:h-44 transform transition-transform animate-pulse drop-shadow-xl flex items-center justify-center">
+            <img src="./logo.png" alt="Manipuri Calendar Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col gap-1.5 mt-2">
             <h1 className="text-2xl font-black text-rose-900 tracking-tight uppercase">
