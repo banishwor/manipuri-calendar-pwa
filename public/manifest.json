@@ -1,7 +1,7 @@
 {
-  "name": "Meitei Calendar",
-  "short_name": "Meitei Cal",
-  "description": "Traditional Meitei Lunar Calendar & Gregorian Calendar (Meitei Thapanlon)",
+  "name": "Manipuri Calendar",
+  "short_name": "Manipuri Calendar",
+  "description": "Manipuri Traditional Lunar Calendar (Meitei Thapanlon)",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#FDFBF7",
