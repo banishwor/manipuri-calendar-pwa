@@ -14,7 +14,7 @@
     },
     "SAJIBU": {
       "mayek": "ꯁꯥꯖꯤꯕꯨ",
-      "bengali": "সাজিবু"
+      "bengali": "শজিবু"
     },
     "KALEN": {
       "mayek": "ꯀꯥꯂꯦꯟ",
@@ -34,7 +34,7 @@
     },
     "LANGBAN": {
       "mayek": "ꯂꯥꯡꯕꯥꯟ",
-      "bengali": "লাংবান"
+      "bengali": "লাংবন"
     },
     "MERA": {
       "mayek": "ꯃꯦꯔꯥ",
@@ -42,7 +42,7 @@
     },
     "HIYANGEI": {
       "mayek": "ꯍꯤꯌꯥꯡꯒꯩ",
-      "bengali": "হিয়াঙৈ"
+      "bengali": "হিয়াংগৈ"
     },
     "POINU": {
       "mayek": "ꯄꯣꯏꯅꯨ",
@@ -76,6 +76,36 @@
     },
     "SATURDAY": {
       "mayek": "ꯊꯥꯡꯖꯥ",
+      "bengali": "থাংজ"
+    }
+  },
+  "weekdaysShort": {
+    "SUNDAY": {
+      "mayek": "ꯅꯣꯡꯃꯥ",
+      "bengali": "নোংমা"
+    },
+    "MONDAY": {
+      "mayek": "ꯅꯤꯡꯊꯧ",
+      "bengali": "নিংথৌ"
+    },
+    "TUESDAY": {
+      "mayek": "ꯂꯩꯄꯥꯛ",
+      "bengali": "লৈপাক"
+    },
+    "WEDNESDAY": {
+      "mayek": "ꯌꯨꯝꯁꯥ",
+      "bengali": "যুমশা"
+    },
+    "THURSDAY": {
+      "mayek": "ꯁꯥꯒꯣꯜ",
+      "bengali": "শগোল"
+    },
+    "FRIDAY": {
+      "mayek": "ꯏꯔꯥꯏ",
+      "bengali": "ইরাই"
+    },
+    "SATURDAY": {
+      "mayek": "ꯊꯥꯡꯖꯥ",
       "bengali": "থাংজা"
     }
   },
@@ -93,8 +123,28 @@
       "bengali": "নোংপোক"
     },
     "NONGCHUP": {
-      "mayek": "ꯅꯣꯡꯆꯨꯄ꯭",
+      "mayek": "ꯅꯣꯡꯆꯨꯞ",
       "bengali": "নোংচুপ"
+    },
+    "CHINGKHEI": {
+      "mayek": "ꯆꯤꯡꯈꯩ",
+      "bengali": "চিংখৈ"
+    },
+    "MEIRAM": {
+      "mayek": "ꯃꯩꯔꯝ",
+      "bengali": "মৈরম"
+    },
+    "KHA": {
+      "mayek": "ꯈꯥ",
+      "bengali": "খা"
+    },
+    "SANTHONG": {
+      "mayek": "ꯁꯥꯟꯊꯣꯡ",
+      "bengali": "সান্থোং"
+    },
+    "KOUBRU": {
+      "mayek": "ꯀꯧꯕ꯭ꯔꯨ",
+      "bengali": "কৌব্রু"
     }
   },
   "digits": {

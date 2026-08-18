@@ -493,7 +493,7 @@
     ],
     "observance": "thasi",
     "festivals": [
-      "meitei_cheiraoba"
+      "cheiraoba"
     ]
   },
   {
@@ -658,7 +658,7 @@
     "month": "SAJIBU",
     "day": 27,
     "festivals": [
-      "cheiraoba"
+      "goura_cheiraoba"
     ]
   },
   {
@@ -1396,7 +1396,10 @@
   {
     "gregorian": "2026-08-14",
     "month": "THAWAN",
-    "day": 2
+    "day": 2,
+    "events": [
+      "manipur_independence_day"
+    ]
   },
   {
     "gregorian": "2026-08-15",

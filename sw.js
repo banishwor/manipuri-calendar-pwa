@@ -1,4 +1,4 @@
-const CACHE_NAME = 'meitei-calendar-v1.0.3';
+const CACHE_NAME = 'meitei-calendar-v2.0.1';
 const ASSETS_TO_CACHE = [
   './',
   'index.html',
@@ -15,8 +15,16 @@ const ASSETS_TO_CACHE = [
   'assets/observances.json',
   'assets/translations.json',
   'assets/calendar/calendar_2026.json',
-  'assets/months/months_2026.json'
+  'assets/months/months_3423.json',
+  'assets/months/months_3424.json',
+  'assets/months/months_3425.json'
 ];
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
