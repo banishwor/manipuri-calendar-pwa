@@ -1,11 +1,11 @@
 import React from 'react';
-import { Award, BookOpen, Check, Heart, Shield, Star, Globe, Rss, User } from 'lucide-react';
+import { Award, BookOpen, Check, Heart, Shield, Star, Globe, Rss, User, Smartphone } from 'lucide-react';
 
 export const AboutTab: React.FC = () => {
   const versionInfo = [
     { label: 'App Version', value: '2.0.0' },
     { label: 'Build Number', value: '4' },
-    { label: 'Last Updated', value: 'July 2026' },
+    { label: 'Last Updated', value: 'August 2026' },
     { label: 'Developer', value: 'Banishwor Athokpam' },
     { label: 'Website', value: 'banishwor.github.io' }
   ];
@@ -36,7 +36,7 @@ export const AboutTab: React.FC = () => {
       </div>
 
       {/* About Me card */}
-      <div className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-6 flex flex-col gap-3 shadow-sm">
+      <div className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-6 flex flex-col gap-4 shadow-sm">
         <h4 className="text-base font-extrabold text-rose-800 dark:text-rose-400 flex items-center gap-2">
           <BookOpen className="w-4 h-4" />
           About Manipuri Calendar
@@ -44,6 +44,18 @@ export const AboutTab: React.FC = () => {
         <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
           Manipuri Calendar is designed to provide a clean, fast, and distraction-free experience for everyone who wants quick access to the Manipuri calendar, Today's Thaban, festivals, and important dates.
         </p>
+
+        {/* Extension of Android App / iOS Note Banner */}
+        <div className="rounded-2xl bg-rose-500/5 dark:bg-rose-500/10 border border-rose-800/15 dark:border-rose-400/20 p-4 flex flex-col gap-1.5">
+          <span className="text-xs font-black text-rose-850 dark:text-rose-400 flex items-center gap-1.5">
+            <Smartphone className="w-3.5 h-3.5 text-rose-800 dark:text-rose-400" />
+            Why a Web App for iOS?
+          </span>
+          <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+            This application is a direct extension of our main <strong className="text-gray-900 dark:text-white font-bold">Manipuri Calendar Android app</strong>. As an independent developer, maintaining the mandatory yearly $99 Apple Developer subscription fee is difficult for a free community app. To ensure iOS and iPhone users don't miss out on having a fast, ad-free traditional Meitei calendar, I custom-built this full Progressive Web App (PWA) specifically for you.
+          </p>
+        </div>
+
         <p className="text-sm text-gray-600 dark:text-gray-300 font-medium leading-relaxed bg-gray-50 dark:bg-gray-850 p-4 rounded-2xl border border-gray-100/50 dark:border-gray-800/50">
           The goal is simple: Open the app, get the information you need instantly, and continue with your day.
         </p>
@@ -107,21 +119,21 @@ export const AboutTab: React.FC = () => {
           href="https://play.google.com/store/apps/details?id=com.yeksalaiapp"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-3xl border border-gray-105 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-5 flex flex-col sm:flex-row gap-5 shadow-sm hover:shadow-md hover:border-rose-800/20 transition-all group"
+          className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-4 sm:p-5 flex flex-row gap-4 sm:gap-5 items-center shadow-sm hover:shadow-md hover:border-rose-800/20 transition-all group"
         >
-          <div className="w-full sm:w-24 h-40 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-800">
+          <div className="w-[84px] sm:w-[92px] h-[148px] sm:h-[162px] flex-shrink-0 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50">
             <img
               src="./yek_salai_screenshot.jpeg"
               alt="Yek Salai Screenshot"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <div className="flex flex-col justify-between gap-3">
-            <div className="flex flex-col gap-1.5">
-              <h5 className="text-md font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors">
+          <div className="flex-1 min-w-0 flex flex-col justify-between gap-2.5">
+            <div className="flex flex-col gap-1">
+              <h5 className="text-sm sm:text-base font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors leading-snug">
                 Yek Salai - Meitei Clan
               </h5>
-              <p className="text-xs text-gray-600 dark:text-gray-305 leading-relaxed">
+              <p className="text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3 sm:line-clamp-none">
                 Identify Meitei clans (Yek/Salai), look up surnames (Yumnak/Sagei), and check traditional marriage compatibility (Yek Tinnaba / Shairuk Tinnaba).
               </p>
             </div>
@@ -138,21 +150,21 @@ export const AboutTab: React.FC = () => {
           href="https://play.google.com/store/apps/details?id=com.manipurcalculator.app"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-3xl border border-gray-105 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-5 flex flex-col sm:flex-row gap-5 shadow-sm hover:shadow-md hover:border-rose-800/20 transition-all group"
+          className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-4 sm:p-5 flex flex-row gap-4 sm:gap-5 items-center shadow-sm hover:shadow-md hover:border-rose-800/20 transition-all group"
         >
-          <div className="w-full sm:w-24 h-40 flex-shrink-0 overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-800">
+          <div className="w-[84px] sm:w-[92px] h-[148px] sm:h-[162px] flex-shrink-0 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50">
             <img
               src="./manipur_calculator_screenshot.jpeg"
               alt="Manipur Calculator Screenshot"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <div className="flex flex-col justify-between gap-3">
-            <div className="flex flex-col gap-1.5">
-              <h5 className="text-md font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors">
+          <div className="flex-1 min-w-0 flex flex-col justify-between gap-2.5">
+            <div className="flex flex-col gap-1">
+              <h5 className="text-sm sm:text-base font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors leading-snug">
                 Manipur Calculator
               </h5>
-              <p className="text-xs text-gray-600 dark:text-gray-305 leading-relaxed">
+              <p className="text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3 sm:line-clamp-none">
                 A comprehensive utility tool for the Manipuri community. Features traditional land unit converters (Pari, Lourak, Sangam), gold weight converters (San, Chaning, Tola), and various financial calculators.
               </p>
             </div>

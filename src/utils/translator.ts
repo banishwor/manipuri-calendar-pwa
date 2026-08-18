@@ -16,8 +16,6 @@ export const Translator = {
   translateMonth(monthName: string, mode: LanguageMode, translations: Translations | null): string {
     if (!translations) return monthName;
     
-    // Check if it is a leap month, e.g. "Wakching (Leap)" or containing "(Leap)"
-    const isLeap = monthName.toUpperCase().includes('LEAP');
     let normalizedKey = monthName.toUpperCase()
       .replace(/\s*\(LEAP\)/g, '')
       .replace(/_LEAP/g, '')
@@ -33,16 +31,18 @@ export const Translator = {
 
     const trans = translations.months[normalizedKey];
     if (!trans) {
-      // fallback to capitalized monthName
       return monthName.charAt(0).toUpperCase() + monthName.slice(1).toLowerCase();
     }
 
+    const hasLeap = monthName.toUpperCase().includes('LEAP');
+    const baseEngName = normalizedKey.charAt(0).toUpperCase() + normalizedKey.slice(1).toLowerCase();
+
     if (mode === LanguageMode.MEITEI_MAYEK) {
-      return trans.mayek + (isLeap ? ' (ꯂꯤꯞ)' : '');
+      return trans.mayek + (hasLeap ? ' (ꯑꯍꯩꯕꯥ)' : '');
     } else if (mode === LanguageMode.BENGALI) {
-      return trans.bengali + (isLeap ? ' (লীপ)' : '');
+      return trans.bengali + (hasLeap ? ' (আহৈবা)' : '');
     } else {
-      return normalizedKey.charAt(0).toUpperCase() + normalizedKey.slice(1).toLowerCase() + (isLeap ? ' (Leap)' : '');
+      return baseEngName + (hasLeap ? ' (Aheiba)' : '');
     }
   },
 
@@ -61,39 +61,28 @@ export const Translator = {
   },
 
   translateWeekdayShort(weekdayName: string, mode: LanguageMode, translations: Translations | null): string {
-    const key = weekdayName.toUpperCase();
-    switch (key) {
-      case 'SUNDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯅꯣꯡꯃꯥ';
-        if (mode === LanguageMode.BENGALI) return 'নোংমা';
-        return 'Sun';
-      case 'MONDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯅꯤꯡꯊꯧ';
-        if (mode === LanguageMode.BENGALI) return 'নিংথৌ';
-        return 'Mon';
-      case 'TUESDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯂꯩꯄꯥꯛ';
-        if (mode === LanguageMode.BENGALI) return 'লৈপাক';
-        return 'Tue';
-      case 'WEDNESDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯌꯨꯝꯁꯥ';
-        if (mode === LanguageMode.BENGALI) return 'যুমশা';
-        return 'Wed';
-      case 'THURSDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯁꯥꯒꯣꯜ';
-        if (mode === LanguageMode.BENGALI) return 'শগোল';
-        return 'Thu';
-      case 'FRIDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯏꯔꯥꯏ';
-        if (mode === LanguageMode.BENGALI) return 'ইরাই';
-        return 'Fri';
-      case 'SATURDAY':
-        if (mode === LanguageMode.MEITEI_MAYEK) return 'ꯊꯥꯡꯖꯥ';
-        if (mode === LanguageMode.BENGALI) return 'থাংজা';
-        return 'Sat';
-      default:
-        return weekdayName.slice(0, 3);
+    const upper = weekdayName.toUpperCase();
+    const englishShort = (() => {
+      switch (upper) {
+        case 'SUNDAY': return 'Sun';
+        case 'MONDAY': return 'Mon';
+        case 'TUESDAY': return 'Tue';
+        case 'WEDNESDAY': return 'Wed';
+        case 'THURSDAY': return 'Thu';
+        case 'FRIDAY': return 'Fri';
+        case 'SATURDAY': return 'Sat';
+        default: return weekdayName.slice(0, 3);
+      }
+    })();
+
+    if (!translations || mode === LanguageMode.ENGLISH) return englishShort;
+
+    const trans = translations.weekdaysShort?.[upper];
+    if (trans) {
+      return mode === LanguageMode.MEITEI_MAYEK ? trans.mayek : trans.bengali;
     }
+
+    return englishShort;
   },
 
   translateDirection(directionName: string, mode: LanguageMode, translations: Translations | null): string {
@@ -108,5 +97,28 @@ export const Translator = {
       : mode === LanguageMode.BENGALI 
         ? trans.bengali 
         : directionName.charAt(0).toUpperCase() + directionName.slice(1).toLowerCase();
+  },
+
+  getMeiteiYear(gregorianDateStr: string, meiteiMonthName: string): number {
+    let year = 2026;
+    try {
+      year = parseInt(gregorianDateStr.split('-')[0], 10) || 2026;
+    } catch {
+      year = 2026;
+    }
+    const normalizedKey = meiteiMonthName.toUpperCase().replace(/\s*\(LEAP\)/g, '').replace(/_LEAP/g, '').trim();
+    const isWakchingPhairenLamta = normalizedKey === 'WAKCHING' || normalizedKey === 'PHAIREN' || normalizedKey === 'LAMTA';
+    return isWakchingPhairenLamta ? year + 1397 : year + 1398;
+  },
+
+  getMeiteiYearLabel(mode: LanguageMode): string {
+    switch (mode) {
+      case LanguageMode.MEITEI_MAYEK:
+        return 'ꯃꯥꯂꯤꯌꯥꯐꯝ ꯄꯥꯂꯆꯥ ꯀꯨꯝꯁꯤꯡ';
+      case LanguageMode.BENGALI:
+        return 'মালিয়াফম পালচা কুমশিং';
+      default:
+        return 'Maliyapham Palcha Kumshing';
+    }
   }
 };

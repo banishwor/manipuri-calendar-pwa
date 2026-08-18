@@ -4,7 +4,7 @@ import { CalendarRepository } from './utils/calendarData';
 import { Translator } from './utils/translator';
 import { TodayTab } from './components/TodayTab';
 import { CalendarTab as CalendarViewTab } from './components/CalendarTab';
-import { TatnabaTab } from './components/TatnabaTab';
+import { AlmanacTab } from './components/AlmanacTab';
 import { AboutTab } from './components/AboutTab';
 import { SearchScreen } from './components/SearchScreen';
 import { SettingsScreen } from './components/SettingsScreen';
@@ -273,16 +273,15 @@ export default function App() {
     <svg className="w-6 h-6 transition-colors" viewBox="0 0 24 24">
       {/* Crescent moon path */}
       <path
-        d="M18 3.6c-3.6 0-3.6 11.2 0 11.2-1.2-.8-1.2-10.4 0-11.2z"
+        d="M 18 3.6 C 6 3.6, 6 20.4, 18 20.4 C 10.08 18.72, 10.08 5.28, 18 3.6 Z"
         fill={isSelected ? '#800E13' : 'currentColor'}
         className={isSelected ? 'dark:fill-rose-400' : 'text-gray-400 dark:text-gray-500'}
-        transform="translate(-6, 2) scale(1.15)"
       />
       {/* Meitei traditional star decoration */}
       <path
-        d="M17 10.8l2 2 5 1.2-5 1.2-2 2-1.2-5-1.2-2 1.2-1.2z"
-        fill="#D4AF37"
-        transform="translate(-8, -1.5) scale(0.65)"
+        d="M 17.28 8.16 L 17.94 10.14 L 19.92 10.8 L 17.94 11.46 L 17.28 13.44 L 16.62 11.46 L 14.64 10.8 L 16.62 10.14 Z"
+        fill={isSelected ? '#D4AF37' : 'currentColor'}
+        className={isSelected ? '' : 'opacity-80 text-gray-400 dark:text-gray-500'}
       />
     </svg>
   );
@@ -492,7 +491,7 @@ export default function App() {
             {[
               { tab: CalendarTab.TODAY, label: 'Today', icon: renderNavIconToday },
               { tab: CalendarTab.CALENDAR, label: 'Calendar', icon: renderNavIconCalendar },
-              { tab: CalendarTab.TATNABA, label: 'Tatnaba', icon: renderNavIconTatnaba },
+              { tab: CalendarTab.ALMANAC, label: 'Almanac', icon: renderNavIconTatnaba },
               { tab: CalendarTab.INFO, label: 'Info', icon: renderNavIconInfo }
             ].map((btn) => {
               const isSel = activeTab === btn.tab;
@@ -548,12 +547,11 @@ export default function App() {
           />
         )}
 
-        {activeTab === CalendarTab.TATNABA && (
-          <TatnabaTab
+        {activeTab === CalendarTab.ALMANAC && (
+          <AlmanacTab
             languageMode={languageMode}
             translations={translations}
-            monthConfigs={monthConfigs}
-            isLoading={loading}
+            todayDay={todayDay}
           />
         )}
 
@@ -568,7 +566,7 @@ export default function App() {
           {[
             { tab: CalendarTab.TODAY, label: 'Today', icon: renderNavIconToday },
             { tab: CalendarTab.CALENDAR, label: 'Calendar', icon: renderNavIconCalendar },
-            { tab: CalendarTab.TATNABA, label: 'Tatnaba', icon: renderNavIconTatnaba },
+            { tab: CalendarTab.ALMANAC, label: 'Almanac', icon: renderNavIconTatnaba },
             { tab: CalendarTab.INFO, label: 'Info', icon: renderNavIconInfo }
           ].map((btn) => {
             const isSel = activeTab === btn.tab;

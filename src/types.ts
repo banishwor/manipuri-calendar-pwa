@@ -13,7 +13,7 @@ export enum DisplayTheme {
 export enum CalendarTab {
   TODAY = 'TODAY',
   CALENDAR = 'CALENDAR',
-  TATNABA = 'TATNABA',
+  ALMANAC = 'ALMANAC',
   INFO = 'INFO'
 }
 
@@ -37,7 +37,7 @@ export interface Event {
 }
 
 export interface MonthConfig {
-  thasiMaikei: 'AWANG' | 'MAKHA' | 'NONGPOK' | 'NONGCHUP' | string;
+  thasiMaikei: 'AWANG' | 'MAKHA' | 'NONGPOK' | 'NONGCHUP' | 'CHINGKHEI' | 'MEIRAM' | 'KHA' | 'SANTHONG' | 'KOUBRU' | string;
   tatnaba: string[]; // Weekdays: "SUNDAY", "MONDAY", etc.
 }
 
@@ -55,6 +55,7 @@ export interface TranslationItem {
 export interface Translations {
   months: Record<string, TranslationItem>;
   weekdays: Record<string, TranslationItem>;
+  weekdaysShort?: Record<string, TranslationItem>;
   directions: Record<string, TranslationItem>;
   digits: Record<string, TranslationItem>;
 }

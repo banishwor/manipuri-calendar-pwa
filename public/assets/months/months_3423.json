@@ -1,0 +1,83 @@
+{
+  "SAJIBU": {
+    "thasiMaikei": "CHINGKHEI",
+    "tatnaba": [
+      "SUNDAY",
+      "MONDAY"
+    ]
+  },
+  "KALEN": {
+    "thasiMaikei": "AWANG",
+    "tatnaba": [
+      "WEDNESDAY",
+      "FRIDAY"
+    ]
+  },
+  "INGA": {
+    "thasiMaikei": "NONGCHUP",
+    "tatnaba": [
+      "TUESDAY"
+    ]
+  },
+  "INGEN": {
+    "thasiMaikei": "KOUBRU",
+    "tatnaba": [
+      "THURSDAY",
+      "SATURDAY"
+    ]
+  },
+  "THAWAN": {
+    "thasiMaikei": "CHINGKHEI",
+    "tatnaba": [
+      "SUNDAY",
+      "MONDAY"
+    ]
+  },
+  "LANGBAN": {
+    "thasiMaikei": "AWANG",
+    "tatnaba": [
+      "WEDNESDAY",
+      "FRIDAY"
+    ]
+  },
+  "MERA": {
+    "thasiMaikei": "NONGCHUP",
+    "tatnaba": [
+      "TUESDAY"
+    ]
+  },
+  "HIYANGEI": {
+    "thasiMaikei": "KOUBRU",
+    "tatnaba": [
+      "THURSDAY",
+      "SATURDAY"
+    ]
+  },
+  "POINU": {
+    "thasiMaikei": "CHINGKHEI",
+    "tatnaba": [
+      "SUNDAY",
+      "MONDAY"
+    ]
+  },
+  "WAKCHING": {
+    "thasiMaikei": "AWANG",
+    "tatnaba": [
+      "WEDNESDAY",
+      "FRIDAY"
+    ]
+  },
+  "PHAIREN": {
+    "thasiMaikei": "NONGCHUP",
+    "tatnaba": [
+      "TUESDAY"
+    ]
+  },
+  "LAMTA": {
+    "thasiMaikei": "KOUBRU",
+    "tatnaba": [
+      "THURSDAY",
+      "SATURDAY"
+    ]
+  }
+}

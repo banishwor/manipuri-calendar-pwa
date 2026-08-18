@@ -6,6 +6,7 @@ export class CalendarRepository {
   private availableYears: number[] = [2026];
   private calendarCache: Record<number, CalendarDay[]> = {};
   private monthsCache: Record<number, Record<string, MonthConfig>> = {};
+  private meiteiMonthsCache: Record<number, Record<string, MonthConfig>> = {};
 
   private eventsList: Event[] = [];
   private observancesList: Observance[] = [];
@@ -76,18 +77,15 @@ export class CalendarRepository {
   }
 
   public async loadYearData(year: number): Promise<boolean> {
-    if (this.calendarCache[year] && this.monthsCache[year]) {
+    if (this.calendarCache[year]) {
       return true;
     }
 
     try {
-      const [calendarRes, monthsRes] = await Promise.all([
-        fetch(`assets/calendar/calendar_${year}.json`),
-        fetch(`assets/months/months_${year}.json`)
-      ]);
+      const calendarRes = await fetch(`assets/calendar/calendar_${year}.json`);
 
-      if (!calendarRes.ok || !monthsRes.ok) {
-        throw new Error(`Data files not found for year ${year}`);
+      if (!calendarRes.ok) {
+        throw new Error(`Calendar data file not found for year ${year}`);
       }
 
       const rawCalendar: any[] = await calendarRes.json();
@@ -109,7 +107,6 @@ export class CalendarRepository {
       });
 
       this.calendarCache[year] = parsedCalendar;
-      this.monthsCache[year] = await monthsRes.json();
       return true;
     } catch (e) {
       console.error(`Failed to load year datasets for ${year}`, e);
@@ -136,17 +133,36 @@ export class CalendarRepository {
     return days.find((d) => d.gregorian === gregorianDate) || null;
   }
 
+  public async getMonthConfigsForMeiteiYear(meiteiYear: number): Promise<Record<string, MonthConfig>> {
+    if (this.meiteiMonthsCache[meiteiYear]) {
+      return this.meiteiMonthsCache[meiteiYear];
+    }
+    try {
+      const res = await fetch(`assets/months/months_${meiteiYear}.json`);
+      if (res.ok) {
+        const data = await res.json();
+        this.meiteiMonthsCache[meiteiYear] = data;
+        return data;
+      }
+    } catch (e) {
+      console.warn(`Failed to load months for Meitei year ${meiteiYear}`, e);
+    }
+    if (meiteiYear !== 3424) {
+      return this.getMonthConfigsForMeiteiYear(3424);
+    }
+    return {};
+  }
+
   public async getMonthConfig(year: number, monthName: string): Promise<MonthConfig | null> {
-    await this.loadYearData(year);
-    const configs = this.monthsCache[year] || {};
-    // Month names inside calendar_2026.json are in UPPERCASE
-    const key = monthName.toUpperCase().replace(/\s*\(LEAP\)/g, '').replace(/_LEAP/g, '').trim();
-    return configs[key] || null;
+    const normalized = monthName.toUpperCase().replace(/\s*\(LEAP\)/g, '').replace(/_LEAP/g, '').trim();
+    const isWakchingPhairenLamta = normalized === 'WAKCHING' || normalized === 'PHAIREN' || normalized === 'LAMTA';
+    const meiteiYear = isWakchingPhairenLamta ? year + 1397 : year + 1398;
+    const configs = await this.getMonthConfigsForMeiteiYear(meiteiYear);
+    return configs[monthName.toUpperCase()] || configs[normalized] || null;
   }
 
   public async getMonthConfigsForYear(year: number): Promise<Record<string, MonthConfig>> {
-    await this.loadYearData(year);
-    return this.monthsCache[year] || {};
+    return this.getMonthConfigsForMeiteiYear(year + 1398);
   }
 
   public async getDaysForYear(year: number): Promise<CalendarDay[]> {

@@ -350,7 +350,7 @@
     "description": "Remembering the legendary Zeliangrong freedom fighter Haipou Jadonang hanged by the British."
   },
   {
-    "id": "laininghal_fully_pokpa",
+    "id": "laininghal_fullo_pokpa",
     "name": "Laininghal Naoriya Phullo Birth Anniversary",
     "category": "memorial",
     "isHoliday": false,
@@ -544,14 +544,15 @@
     "name": "Sajibu Nongma Panba (Cheiraoba)",
     "category": "festival",
     "isHoliday": true,
-    "description": "The traditional lunar New Year of the Meitei people, celebrated on the first day of the Sajibu month with ritualistic food offerings, prayers, and climbing sacred hilltops."
+    "description": "The traditional lunar New Year of the Meitei people, celebrated on the first day of the Sajibu month with ritualistic food offerings, prayers, and climbing sacred hilltops.",
+    "blogUrl": "https://baniat.blogspot.com/2026/03/sajibu-nongma-panba.html"
   },
   {
-    "id": "meitei_cheiraoba",
-    "name": "Meitei Cheiraoba",
+    "id": "goura_cheiraoba",
+    "name": "Goura Cheiraoba",
     "category": "festival",
     "isHoliday": true,
-    "description": "The traditional Meitei New Year celebration marking the seasonal transition with family feasts and climbing Cheirao Ching hill."
+    "description": "Goura Cheiraoba is the traditional Manipuri New Year celebrated by the Meitei (Goura) Vaishnavite community on the first day of the Baisakh month. The festival symbolizes the end of the old year and the beginning of a prosperous new one, marked by community feasts, prayers, and visits to temples."
   },
   {
     "id": "eid_ul_fitr",
@@ -600,7 +601,15 @@
     "name": "Patriots' Day",
     "category": "memorial",
     "isHoliday": true,
-    "description": "Observed on August 13 to honor the martyrs of Manipur, including Bir Tikendrajit and Thangal General, who were hanged by the British in 1891 for defending Manipur's sovereignty."
+    "description": "Observed on August 13 to honor the martyrs of Manipur, including Bir Tikendrajit and Thangal General, who were hanged by the British in 1891 for defending Manipur's sovereignty.",
+    "blogUrl": "https://baniat.blogspot.com/2025/08/the-lions-of-manipur.html"
+  },
+  {
+    "id": "manipur_independence_day",
+    "name": "Manipur Independence Day",
+    "category": "celebration",
+    "isHoliday": false,
+    "description": "Commemorates August 14, 1947, when the kingdom of Manipur declared independence from British rule, hoisting the historical five-colored flag."
   },
   {
     "id": "independence_day",
@@ -614,7 +623,8 @@
     "name": "Irabot Day",
     "category": "memorial",
     "isHoliday": true,
-    "description": "Observed on September 30 to commemorate the birth anniversary of Jananeta Hijam Irabot, a pioneer social reformer, politician, writer, and freedom fighter of Manipur."
+    "description": "Observed on September 30 to commemorate the birth anniversary of Jananeta Hijam Irabot, a pioneer social reformer, politician, writer, and freedom fighter of Manipur.",
+    "blogUrl": "https://baniat.blogspot.com/2025/10/hijamirabot.html"
   },
   {
     "id": "gandhi_jayanti",
@@ -642,7 +652,8 @@
     "name": "Ningol Chakkouba",
     "category": "festival",
     "isHoliday": true,
-    "description": "The most grand and beloved festival of Manipur, celebrated on the second day of the Hiyangei month, where married sisters (Ningols) are invited to their parental homes for a magnificent traditional feast and presented with gifts."
+    "description": "The most grand and beloved festival of Manipur, celebrated on the second day of the Hiyangei month, where married sisters (Ningols) are invited to their parental homes for a magnificent traditional feast and presented with gifts.",
+    "blogUrl": "https://baniat.blogspot.com/2025/10/ningol-chakouba-celebration-of-love-and.html"
   },
   {
     "id": "nupi_lan",
