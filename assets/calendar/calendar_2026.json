@@ -17,7 +17,6 @@
     "gregorian": "2026-01-03",
     "month": "WAKCHING",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "ayang_leima_kabok_chaiba"
     ]
@@ -82,8 +81,6 @@
     "gregorian": "2026-01-14",
     "month": "WAKCHING",
     "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning",
     "events": [
       "driver_day"
     ]
@@ -106,8 +103,7 @@
   {
     "gregorian": "2026-01-18",
     "month": "WAKCHING",
-    "day": 30,
-    "observance": "thasi"
+    "day": 30
   },
   {
     "gregorian": "2026-01-19",
@@ -175,8 +171,6 @@
     "gregorian": "2026-01-29",
     "month": "PHAIREN",
     "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing",
     "events": [
       "shiri_krishna_leikhidaba_numit"
     ]
@@ -200,8 +194,7 @@
   {
     "gregorian": "2026-02-01",
     "month": "PHAIREN",
-    "day": 15,
-    "observance": "purnima"
+    "day": 15
   },
   {
     "gregorian": "2026-02-02",
@@ -261,9 +254,7 @@
   {
     "gregorian": "2026-02-13",
     "month": "PHAIREN",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-02-14",
@@ -296,7 +287,6 @@
     "gregorian": "2026-02-17",
     "month": "PHAIREN",
     "day": 30,
-    "observance": "thasi",
     "events": [
       "rani_gaiding_lui_leikhidaba"
     ]
@@ -361,9 +351,7 @@
   {
     "gregorian": "2026-02-27",
     "month": "LAMTA",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-02-28",
@@ -387,7 +375,6 @@
     "gregorian": "2026-03-03",
     "month": "LAMTA",
     "day": 15,
-    "observance": "purnima",
     "festivals": [
       "yaoshang_meithaba"
     ]
@@ -462,9 +449,7 @@
   {
     "gregorian": "2026-03-15",
     "month": "LAMTA",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-03-16",
@@ -491,7 +476,6 @@
       30,
       1
     ],
-    "observance": "thasi",
     "festivals": [
       "cheiraoba"
     ]
@@ -553,9 +537,7 @@
   {
     "gregorian": "2026-03-29",
     "month": "SAJIBU",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-03-30",
@@ -582,7 +564,6 @@
     "gregorian": "2026-04-02",
     "month": "SAJIBU",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "hanuman_pokpa"
     ]
@@ -649,9 +630,7 @@
   {
     "gregorian": "2026-04-13",
     "month": "SAJIBU",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-04-14",
@@ -682,8 +661,7 @@
   {
     "gregorian": "2026-04-18",
     "month": "KALEN",
-    "day": 1,
-    "observance": "thasi"
+    "day": 1
   },
   {
     "gregorian": "2026-04-19",
@@ -740,9 +718,7 @@
   {
     "gregorian": "2026-04-27",
     "month": "KALEN",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-04-28",
@@ -763,7 +739,6 @@
     "gregorian": "2026-05-01",
     "month": "KALEN",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "jatra_kali"
     ]
@@ -830,8 +805,6 @@
     "gregorian": "2026-05-13",
     "month": "KALEN",
     "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning",
     "events": [
       "nurses_day"
     ]
@@ -852,8 +825,7 @@
     "day": [
       29,
       30
-    ],
-    "observance": "thasi"
+    ]
   },
   {
     "gregorian": "2026-05-17",
@@ -912,8 +884,6 @@
     "gregorian": "2026-05-27",
     "month": "INGA",
     "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing",
     "festivals": [
       "eid_ul_adha"
     ]
@@ -936,8 +906,7 @@
   {
     "gregorian": "2026-05-31",
     "month": "INGA",
-    "day": 15,
-    "observance": "purnima"
+    "day": 15
   },
   {
     "gregorian": "2026-06-01",
@@ -995,9 +964,7 @@
   {
     "gregorian": "2026-06-11",
     "month": "INGA",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-06-12",
@@ -1017,8 +984,7 @@
   {
     "gregorian": "2026-06-15",
     "month": "INGA",
-    "day": 30,
-    "observance": "thasi"
+    "day": 30
   },
   {
     "gregorian": "2026-06-16",
@@ -1083,9 +1049,7 @@
   {
     "gregorian": "2026-06-25",
     "month": "INGA",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-06-26",
@@ -1117,7 +1081,6 @@
     "gregorian": "2026-06-30",
     "month": "INGA",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "sanamahi_cheng_haiba"
     ]
@@ -1181,9 +1144,7 @@
     "day": [
       26,
       27
-    ],
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    ]
   },
   {
     "gregorian": "2026-07-12",
@@ -1198,8 +1159,7 @@
   {
     "gregorian": "2026-07-14",
     "month": "INGA",
-    "day": 30,
-    "observance": "thasi"
+    "day": 30
   },
   {
     "gregorian": "2026-07-15",
@@ -1269,9 +1229,7 @@
   {
     "gregorian": "2026-07-25",
     "month": "INGEN",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-07-26",
@@ -1295,7 +1253,6 @@
     "gregorian": "2026-07-29",
     "month": "INGEN",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "guru_prunima"
     ]
@@ -1360,8 +1317,6 @@
     "gregorian": "2026-08-09",
     "month": "INGEN",
     "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning",
     "events": [
       "nagashakhi_numit"
     ]
@@ -1382,8 +1337,7 @@
   {
     "gregorian": "2026-08-12",
     "month": "THAWAN",
-    "day": 30,
-    "observance": "thasi"
+    "day": 30
   },
   {
     "gregorian": "2026-08-13",
@@ -1450,9 +1404,7 @@
   {
     "gregorian": "2026-08-23",
     "month": "THAWAN",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-08-24",
@@ -1484,7 +1436,6 @@
     "gregorian": "2026-08-28",
     "month": "THAWAN",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "raksha_bandhan"
     ]
@@ -1552,9 +1503,7 @@
   {
     "gregorian": "2026-09-07",
     "month": "THAWAN",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-09-08",
@@ -1574,8 +1523,7 @@
   {
     "gregorian": "2026-09-11",
     "month": "THAWAN",
-    "day": 30,
-    "observance": "thasi"
+    "day": 30
   },
   {
     "gregorian": "2026-09-12",
@@ -1640,8 +1588,6 @@
     "gregorian": "2026-09-22",
     "month": "LANGBAN",
     "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing",
     "events": [
       "heikru_hidongba"
     ]
@@ -1667,8 +1613,7 @@
   {
     "gregorian": "2026-09-26",
     "month": "LANGBAN",
-    "day": 15,
-    "observance": "purnima"
+    "day": 15
   },
   {
     "gregorian": "2026-09-27",
@@ -1730,9 +1675,7 @@
   {
     "gregorian": "2026-10-06",
     "month": "LANGBAN",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-10-07",
@@ -1753,7 +1696,6 @@
     "gregorian": "2026-10-10",
     "month": "LANGBAN",
     "day": 30,
-    "observance": "thasi",
     "events": [
       "tarpan_loiba"
     ]
@@ -1828,9 +1770,7 @@
   {
     "gregorian": "2026-10-22",
     "month": "MERA",
-    "day": 11,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 11
   },
   {
     "gregorian": "2026-10-23",
@@ -1854,7 +1794,6 @@
     "gregorian": "2026-10-26",
     "month": "MERA",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "mera_hou_chongba"
     ]
@@ -1913,9 +1852,7 @@
   {
     "gregorian": "2026-11-05",
     "month": "MERA",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-11-06",
@@ -1936,7 +1873,6 @@
     "gregorian": "2026-11-09",
     "month": "MERA",
     "day": 30,
-    "observance": "thasi",
     "festivals": [
       "diwali"
     ]
@@ -2015,8 +1951,6 @@
       11,
       12
     ],
-    "observance": "ekadasi",
-    "moonPhase": "waxing",
     "events": [
       "tulsi_bhiva_hari_uthan"
     ]
@@ -2035,7 +1969,6 @@
     "gregorian": "2026-11-24",
     "month": "HIYANGEI",
     "day": 15,
-    "observance": "purnima",
     "events": [
       "mera_wa_fukpa"
     ]
@@ -2091,9 +2024,7 @@
   {
     "gregorian": "2026-12-04",
     "month": "HIYANGEI",
-    "day": 26,
-    "observance": "ekadasi",
-    "moonPhase": "waning"
+    "day": 26
   },
   {
     "gregorian": "2026-12-05",
@@ -2118,8 +2049,7 @@
   {
     "gregorian": "2026-12-09",
     "month": "HIYANGEI",
-    "day": 30,
-    "observance": "thasi"
+    "day": 30
   },
   {
     "gregorian": "2026-12-10",
@@ -2172,9 +2102,7 @@
   {
     "gregorian": "2026-12-19",
     "month": "POINU",
-    "day": 10,
-    "observance": "ekadasi",
-    "moonPhase": "waxing"
+    "day": 10
   },
   {
     "gregorian": "2026-12-20",
@@ -2208,7 +2136,6 @@
     "gregorian": "2026-12-25",
     "month": "POINU",
     "day": 17,
-    "observance": "purnima",
     "festivals": [
       "christmas"
     ]
