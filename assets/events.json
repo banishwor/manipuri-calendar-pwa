@@ -549,10 +549,10 @@
   },
   {
     "id": "goura_cheiraoba",
-    "name": "Goura Cheiraoba",
+    "name": "Goura Cheiraoba (Charak Puja)",
     "category": "festival",
     "isHoliday": true,
-    "description": "Goura Cheiraoba is the traditional Manipuri New Year celebrated by the Meitei (Goura) Vaishnavite community on the first day of the Baisakh month. The festival symbolizes the end of the old year and the beginning of a prosperous new one, marked by community feasts, prayers, and visits to temples."
+    "description": "Goura Cheiraoba (also known as Charak Puja) is celebrated on Chaitra Sankranti / April 14, marking the solar new year and traditional Meitei Vaishnavite observance with community feasts, prayers, and temple visits."
   },
   {
     "id": "eid_ul_fitr",
@@ -696,5 +696,40 @@
     "category": "festival",
     "isHoliday": true,
     "description": "Traditional boat race festival celebrated on the moat of the Bijoy Govinda Temple in Imphal on the 11th day of the Langban month."
+  },
+  {
+    "id": "charak_puja",
+    "name": "Charak Puja (Goura Cheiraoba)",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "Charak Puja (also known as Goura Cheiraoba) is celebrated on Chaitra Sankranti / April 14, marking the solar new year and traditional Meitei Vaishnavite observance with community feasts, prayers, and temple visits."
+  },
+  {
+    "id": "black_day",
+    "name": "Black Day",
+    "category": "memorial",
+    "isHoliday": false,
+    "description": "Observed on May 3rd, marking the start of ethnic violence in Manipur in 2023 between indigenous people and illegal immigrants, honoring the victims and reaffirming peace and state integrity."
+  },
+  {
+    "id": "4th_saturday",
+    "name": "Fourth Saturday Bank Holiday",
+    "category": "holiday",
+    "isHoliday": true,
+    "description": "Fourth Saturday bank and public holiday."
+  },
+  {
+    "id": "sangai_festival_houba",
+    "name": "Manipur Sangai Festival (Opening)",
+    "category": "festival",
+    "isHoliday": false,
+    "description": "Opening of the annual Manipur Sangai Festival showcasing the state's art, culture, handloom, and traditions."
+  },
+  {
+    "id": "sangai_festival_loiba",
+    "name": "Manipur Sangai Festival (Closing)",
+    "category": "festival",
+    "isHoliday": false,
+    "description": "Culmination of the annual Manipur Sangai Festival."
   }
 ]
