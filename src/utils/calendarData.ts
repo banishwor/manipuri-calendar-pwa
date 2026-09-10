@@ -1,4 +1,5 @@
 import { CalendarDay, Event, MonthConfig, Observance, Translations } from '../types';
+import { enrichDaysWithObservances } from './observanceCalculator';
 
 export class CalendarRepository {
   private static instance: CalendarRepository;
@@ -106,7 +107,7 @@ export class CalendarRepository {
         };
       });
 
-      this.calendarCache[year] = parsedCalendar;
+      this.calendarCache[year] = enrichDaysWithObservances(parsedCalendar);
       return true;
     } catch (e) {
       console.error(`Failed to load year datasets for ${year}`, e);
