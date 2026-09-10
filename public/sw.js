@@ -1,4 +1,4 @@
-const CACHE_NAME = 'meitei-calendar-v2.1.0';
+const CACHE_NAME = 'meitei-calendar-v2.2.0';
 const ASSETS_TO_CACHE = [
   './',
   'index.html',
@@ -15,6 +15,7 @@ const ASSETS_TO_CACHE = [
   'assets/observances.json',
   'assets/translations.json',
   'assets/calendar/calendar_2026.json',
+  'assets/calendar/calendar_2027.json',
   'assets/months/months_3423.json',
   'assets/months/months_3424.json',
   'assets/months/months_3425.json'

@@ -17,13 +17,17 @@ export function enrichDaysWithObservances(days: CalendarDay[]): CalendarDay[] {
     let calculatedObs: string | undefined;
     let calculatedMoonPhase: string | undefined;
 
-    // Ekadasi (Waxing on 11, Waning on 26)
+    // Ekadasi (Waxing on 11, Waning on 26; if multi-day span, tag the second day)
     if (curDays.includes(11)) {
-      calculatedObs = 'ekadasi';
-      calculatedMoonPhase = 'waxing';
+      if (!nextDays.includes(11)) {
+        calculatedObs = 'ekadasi';
+        calculatedMoonPhase = 'waxing';
+      }
     } else if (curDays.includes(26)) {
-      calculatedObs = 'ekadasi';
-      calculatedMoonPhase = 'waning';
+      if (!nextDays.includes(26)) {
+        calculatedObs = 'ekadasi';
+        calculatedMoonPhase = 'waning';
+      }
     } else if (curDays.includes(15)) {
       // Purnima (Day 15; if multi-day span, tag the second day)
       if (!nextDays.includes(15)) {
