@@ -158,8 +158,6 @@ export function enrichDaysWithFestivals(days: CalendarDay[]): CalendarDay[] {
       if (dayOfWeek === 6) {
         if (dayOfMonth >= 8 && dayOfMonth <= 14) {
           addedFestivals.push('2nd_saturday');
-        } else if (dayOfMonth >= 22 && dayOfMonth <= 28) {
-          addedFestivals.push('4th_saturday');
         }
         if (day.gregorian === firstLamtaSat || day.gregorian === lastLamtaSat) {
           addedEvents.push('saroi_khangba');
