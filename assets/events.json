@@ -712,13 +712,6 @@
     "description": "Observed on May 3rd, marking the start of ethnic violence in Manipur in 2023 between indigenous people and illegal immigrants, honoring the victims and reaffirming peace and state integrity."
   },
   {
-    "id": "4th_saturday",
-    "name": "Fourth Saturday Bank Holiday",
-    "category": "holiday",
-    "isHoliday": true,
-    "description": "Fourth Saturday bank and public holiday."
-  },
-  {
     "id": "sangai_festival_houba",
     "name": "Manipur Sangai Festival (Opening)",
     "category": "festival",
