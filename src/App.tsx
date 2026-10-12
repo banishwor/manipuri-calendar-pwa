@@ -11,6 +11,7 @@ import { SettingsScreen } from './components/SettingsScreen';
 import { DayDetailScreen } from './components/DayDetailScreen';
 import { Calendar as CalendarIcon, Info, MapPin, Compass, ShieldAlert, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { trackPwaInstall } from './utils/analytics';
 
 export default function App() {
   // --- STATE DECLARATIONS ---
@@ -677,6 +678,9 @@ export default function App() {
                       deferredPrompt.prompt();
                       const { outcome } = await deferredPrompt.userChoice;
                       console.log(`User response to install prompt: ${outcome}`);
+                      if (outcome === 'accepted') {
+                        trackPwaInstall('in_app_modal');
+                      }
                       setDeferredPrompt(null);
                     }
                     setShowInstallPrompt(false);

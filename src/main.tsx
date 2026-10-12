@@ -2,6 +2,10 @@ import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { initAnalyticsAndNotifications } from './utils/analytics';
+
+// Initialize analytics and daily/install notifications
+initAnalyticsAndNotifications();
 
 // Register Service Worker for offline PWA operation and auto-updates
 if ('serviceWorker' in navigator) {
