@@ -9,7 +9,7 @@ import { AboutTab } from './components/AboutTab';
 import { SearchScreen } from './components/SearchScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { DayDetailScreen } from './components/DayDetailScreen';
-import { Calendar as CalendarIcon, Info, MapPin, Compass, ShieldAlert, Sparkles } from 'lucide-react';
+import { Calendar as CalendarIcon, Info, MapPin, Compass, ShieldAlert, Sparkles, Search, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { trackPwaInstall } from './utils/analytics';
 
@@ -66,6 +66,23 @@ export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+
+  // Desktop keyboard shortcuts (Ctrl+K / Cmd+K for search, Escape to close modals)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+      if (e.key === 'Escape') {
+        setSearchOpen(false);
+        setSettingsOpen(false);
+        setSelectedDateStr(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // --- INITIALIZATION ---
   useEffect(() => {
@@ -473,11 +490,11 @@ export default function App() {
 
   // --- CORE UI LAYOUT SCREEN ---
   return (
-    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#140D0E] text-[#2B0508] dark:text-[#F9EAEB] transition-colors relative flex flex-col">
+    <div className="min-h-screen md:h-screen md:max-h-screen bg-[#FDFBF7] dark:bg-[#140D0E] text-[#2B0508] dark:text-[#F9EAEB] transition-colors relative flex flex-col md:overflow-hidden">
       
       {/* Desktop Navigation Side Bar & Top bar (hides on mobile) */}
       <header className="hidden md:flex border-b border-gray-100 dark:border-gray-800/80 bg-white/80 dark:bg-[#1D1416]/80 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-4xl w-full mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-rose-800 flex items-center justify-center text-white font-bold">
               ꯋ
@@ -488,35 +505,57 @@ export default function App() {
             </div>
           </div>
 
-          <nav className="flex items-center gap-2">
-            {[
-              { tab: CalendarTab.TODAY, label: 'Today', icon: renderNavIconToday },
-              { tab: CalendarTab.CALENDAR, label: 'Calendar', icon: renderNavIconCalendar },
-              { tab: CalendarTab.ALMANAC, label: 'Almanac', icon: renderNavIconTatnaba },
-              { tab: CalendarTab.INFO, label: 'Info', icon: renderNavIconInfo }
-            ].map((btn) => {
-              const isSel = activeTab === btn.tab;
-              return (
-                <button
-                  key={btn.tab}
-                  onClick={() => setActiveTab(btn.tab)}
-                  className={`px-4 py-2.5 rounded-full text-xs font-black transition-all flex items-center gap-2 ${
-                    isSel 
-                      ? 'bg-rose-500/10 text-rose-800 dark:text-rose-400 border-none' 
-                      : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  {btn.icon(isSel)}
-                  {btn.label}
-                </button>
-              );
-            })}
-          </nav>
+          <div className="flex items-center gap-3">
+            <nav className="flex items-center gap-1.5">
+              {[
+                { tab: CalendarTab.TODAY, label: 'Today', icon: renderNavIconToday },
+                { tab: CalendarTab.CALENDAR, label: 'Calendar', icon: renderNavIconCalendar },
+                { tab: CalendarTab.ALMANAC, label: 'Almanac', icon: renderNavIconTatnaba },
+                { tab: CalendarTab.INFO, label: 'Info', icon: renderNavIconInfo }
+              ].map((btn) => {
+                const isSel = activeTab === btn.tab;
+                return (
+                  <button
+                    key={btn.tab}
+                    onClick={() => setActiveTab(btn.tab)}
+                    className={`px-3.5 py-2 rounded-full text-xs font-black transition-all flex items-center gap-2 cursor-pointer ${
+                      isSel 
+                        ? 'bg-rose-500/10 text-rose-800 dark:text-rose-400 border-none' 
+                        : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    }`}
+                  >
+                    {btn.icon(isSel)}
+                    {btn.label}
+                  </button>
+                );
+              })}
+            </nav>
+
+            <div className="h-5 w-px bg-gray-200 dark:bg-gray-800 mx-1" />
+
+            {/* Desktop Action Icons */}
+            <div className="flex items-center gap-1">
+              <button 
+                onClick={() => setSearchOpen(true)}
+                className="p-2 rounded-xl text-gray-500 hover:text-rose-800 dark:text-gray-400 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
+                title="Search (Ctrl+K or ⌘K)"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => setSettingsOpen(true)}
+                className="p-2 rounded-xl text-gray-500 hover:text-rose-800 dark:text-gray-400 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
+                title="Settings"
+              >
+                <Settings className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
       {/* Main Responsive Body Container */}
-      <main className="flex-1 w-full max-w-2xl mx-auto px-4 pb-4 pt-safe md:py-6 overflow-hidden">
+      <main className="flex-1 w-full max-w-6xl xl:max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pb-4 pt-safe md:py-3.5 lg:py-4 md:pb-4 flex flex-col min-h-0 overflow-y-auto md:overflow-hidden">
         {activeTab === CalendarTab.TODAY && (
           <TodayTab
             todayDay={todayDay}
@@ -545,6 +584,7 @@ export default function App() {
             onPrevMonth={handlePrevMonth}
             onNextMonth={handleNextMonth}
             onJumpToToday={handleJumpToToday}
+            monthConfigs={monthConfigs}
           />
         )}
 
@@ -557,7 +597,10 @@ export default function App() {
         )}
 
         {activeTab === CalendarTab.INFO && (
-          <AboutTab />
+          <AboutTab
+            languageMode={languageMode}
+            translations={translations}
+          />
         )}
       </main>
 
@@ -591,14 +634,9 @@ export default function App() {
 
       {/* --- FLOATING OVERLAY DIALOG MODALS WITH ANIMATE PRESENCE --- */}
       <AnimatePresence>
-        {/* Settings Overlay */}
-        {settingsOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
+        {/* Settings Pop-up Overlay */}
+        <AnimatePresence>
+          {settingsOpen && (
             <SettingsScreen
               languageMode={languageMode}
               onSetLanguageMode={setLanguageMode}
@@ -610,17 +648,12 @@ export default function App() {
                 setActiveTab(CalendarTab.INFO);
               }}
             />
-          </motion.div>
-        )}
+          )}
+        </AnimatePresence>
 
         {/* Search Overlay */}
-        {searchOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
+        <AnimatePresence>
+          {searchOpen && (
             <SearchScreen
               languageMode={languageMode}
               translations={translations}
@@ -631,17 +664,12 @@ export default function App() {
               }}
               onClose={() => setSearchOpen(false)}
             />
-          </motion.div>
-        )}
+          )}
+        </AnimatePresence>
 
-        {/* Day Detail Overlay */}
-        {selectedDateStr && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
+        {/* Day Detail Pop-up Overlay */}
+        <AnimatePresence>
+          {selectedDateStr && (
             <DayDetailScreen
               dateStr={selectedDateStr}
               languageMode={languageMode}
@@ -649,8 +677,8 @@ export default function App() {
               eventsList={eventsList}
               onClose={() => setSelectedDateStr(null)}
             />
-          </motion.div>
-        )}
+          )}
+        </AnimatePresence>
 
         {/* PWA Install Prompt Overlay */}
         {showInstallPrompt && deferredPrompt && (

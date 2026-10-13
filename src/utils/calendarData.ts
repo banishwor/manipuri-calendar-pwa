@@ -212,6 +212,13 @@ export class CalendarRepository {
           return true;
         }
 
+        // 6. Matches month translations (Meitei Mayek or Bengali)
+        const monthTrans = this.translationsObj?.months?.[day.month];
+        if (monthTrans) {
+          if (monthTrans.mayek && monthTrans.mayek.includes(cleanQuery)) return true;
+          if (monthTrans.bengali && monthTrans.bengali.toLowerCase().includes(cleanQuery)) return true;
+        }
+
         return false;
       });
 

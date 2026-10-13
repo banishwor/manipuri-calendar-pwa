@@ -23,8 +23,8 @@
   {
     "id": "state_hood_day",
     "name": "Statehood Day",
-    "category": "national_holiday",
-    "isHoliday": true,
+    "category": "commemoration",
+    "isHoliday": false,
     "description": "Celebrating the day Manipur became a full-fledged state of the Indian Union on January 21, 1972."
   },
   {
@@ -51,7 +51,7 @@
   {
     "id": "gandhi_leilhidaba_numit",
     "name": "Martyrs' Day (Gandhi Death Anniversary)",
-    "category": "national_holiday",
+    "category": "memorial",
     "isHoliday": false,
     "description": "Martyrs' Day observation marking the assassination of Mahatma Gandhi."
   },
@@ -79,7 +79,7 @@
   {
     "id": "saroi_khangba",
     "name": "Saroi Khangba",
-    "category": "ritual",
+    "category": "festival",
     "isHoliday": false,
     "description": "Worship or ritual appeasement of evil spirits, traditionally held on the first and last Saturdays of the month of Lamta."
   },
@@ -100,7 +100,7 @@
   {
     "id": "pechakari",
     "name": "Pechakari Day",
-    "category": "festival_day",
+    "category": "festival",
     "isHoliday": false,
     "description": "Holi/Yaoshang celebration involving the spraying of coloured water using syringes (pechakari)."
   },
@@ -156,7 +156,7 @@
   {
     "id": "easther_sunday",
     "name": "Easter Sunday",
-    "category": "festival_day",
+    "category": "festival",
     "isHoliday": false,
     "description": "Christian celebration of the resurrection of Jesus Christ."
   },
@@ -220,7 +220,7 @@
     "id": "jun_18",
     "name": "Great June Uprising Day (Manipur Integrity Day)",
     "category": "memorial",
-    "isHoliday": true,
+    "isHoliday": false,
     "description": "Tribute to those who laid down their lives on June 18, 2001, to assert the territorial integrity of Manipur."
   },
   {
@@ -248,7 +248,7 @@
     "id": "muharram",
     "name": "Muharram",
     "category": "ritual",
-    "isHoliday": true,
+    "isHoliday": false,
     "description": "The first month of the Islamic calendar, observed with reverence."
   },
   {
@@ -338,7 +338,7 @@
   {
     "id": "raksha_bandhan",
     "name": "Raksha Bandhan",
-    "category": "celebration",
+    "category": "festival",
     "isHoliday": false,
     "description": "Celebrating the sacred bond and protection between brothers and sisters."
   },
@@ -457,7 +457,7 @@
   {
     "id": "gorbardhan_puja",
     "name": "Govardhan Puja",
-    "category": "ritual",
+    "category": "festival",
     "isHoliday": false,
     "description": "Traditional offering dedicated to Giriraj Govardhan hill."
   },
@@ -485,7 +485,7 @@
   {
     "id": "mera_wa_fukpa",
     "name": "Mera Wa-Fukpa",
-    "category": "ritual",
+    "category": "festival",
     "isHoliday": false,
     "description": "Ancient ritual closing ceremony of Mera month's sky lantern (Mera Thaomei)."
   },
@@ -513,7 +513,7 @@
   {
     "id": "2nd_saturday",
     "name": "Second Saturday Bank Holiday",
-    "category": "holiday",
+    "category": "bank_holiday",
     "isHoliday": true,
     "description": "Monthly bank holiday observed across Manipur and India on the second Saturday of every month."
   },
@@ -593,7 +593,7 @@
     "id": "kanglen",
     "name": "Kanglen",
     "category": "festival",
-    "isHoliday": true,
+    "isHoliday": false,
     "description": "The closing ceremony (Purnayatra) of the Rath Yatra festival in Manipur, marked by special ritual songs, dances, and feasts."
   },
   {
@@ -607,7 +607,7 @@
   {
     "id": "manipur_independence_day",
     "name": "Manipur Independence Day",
-    "category": "celebration",
+    "category": "commemoration",
     "isHoliday": false,
     "description": "Commemorates August 14, 1947, when the kingdom of Manipur declared independence from British rule, hoisting the historical five-colored flag."
   },
@@ -679,7 +679,7 @@
   {
     "id": "may_day",
     "name": "May Day",
-    "category": "holiday",
+    "category": "commemoration",
     "isHoliday": true,
     "description": "International Workers' Day, celebrating the achievements of workers and laborers."
   },
@@ -694,15 +694,8 @@
     "id": "heikru_hidongba",
     "name": "Heikru Hidongba",
     "category": "festival",
-    "isHoliday": true,
+    "isHoliday": false,
     "description": "Traditional boat race festival celebrated on the moat of the Bijoy Govinda Temple in Imphal on the 11th day of the Langban month."
-  },
-  {
-    "id": "charak_puja",
-    "name": "Charak Puja (Goura Cheiraoba)",
-    "category": "festival",
-    "isHoliday": true,
-    "description": "Charak Puja (also known as Goura Cheiraoba) is celebrated on Chaitra Sankranti / April 14, marking the solar new year and traditional Meitei Vaishnavite observance with community feasts, prayers, and temple visits."
   },
   {
     "id": "black_day",
@@ -724,5 +717,12 @@
     "category": "festival",
     "isHoliday": false,
     "description": "Culmination of the annual Manipur Sangai Festival."
+  },
+  {
+    "id": "imoinu_iratpa",
+    "name": "Imoinu Iratpa",
+    "category": "festival",
+    "isHoliday": true,
+    "description": "Sacred festival dedicated to Ema Imoinu Ahongbi, the goddess of wealth, prosperity, and household well-being in Meitei tradition, celebrated on the 12th day of the lunar month of Poinu."
   }
 ]
