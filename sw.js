@@ -1,4 +1,4 @@
-const CACHE_NAME = 'meitei-calendar-v2.3.0';
+const CACHE_NAME = 'meitei-calendar-v2.3.5';
 const ASSETS_TO_CACHE = [
   './',
   'index.html',
@@ -10,6 +10,7 @@ const ASSETS_TO_CACHE = [
   'apple-touch-icon.png',
   'icon-192.png',
   'icon-512.png',
+  'llms.txt',
   'assets/years.json',
   'assets/events.json',
   'assets/observances.json',

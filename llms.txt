@@ -1,0 +1,68 @@
+# Manipuri Calendar PWA (ꯃꯩꯇꯩ ꯊꯥꯄꯥꯟꯂꯣꯟ)
+
+> A modern, fast, offline-capable Progressive Web Application (PWA) for the traditional Meitei (Manipuri) lunar calendar, featuring tri-script localization (English, Meitei Mayek, Bengali), daily cultural astrology (Thaban, Tatnaba, Thasi Maikei, Yek Salai), recurring festivals, and solemn historical memorials.
+
+## Overview
+Manipuri Calendar PWA brings the ancient Manipuri lunar calendar (*Thapanlon*) to web and mobile devices. It bridges traditional astronomical calculations with modern web standards, offering complete offline capability, instant search, responsive desktop & mobile interfaces, and zero advertisements.
+
+- **Live URL**: https://banishwor.github.io/manipuri-calendar-pwa/
+- **Repository**: https://github.com/banishwor/manipuri-calendar-pwa
+- **Companion Android App**: [Manipuri Calendar on Google Play](https://play.google.com/store/apps/details?id=com.manipurcalendar)
+- **Developer**: Banishwor Athokpam (banishwor@outlook.com)
+
+---
+
+## Key Cultural & Astronomical Concepts
+
+### 1. The 12 Meitei Lunar Months
+The calendar follows the traditional 12-month Meitei astronomical cycle (plus Leap/Humpata months when calculated):
+1. **Sajibu (ꯁꯖꯤꯕꯨ)** - Month of the New Year (Cheiraoba)
+2. **Kalen (ꯀꯥꯂꯦꯟ)** - Month of worship of Lainingthou Sanamahi and Soraren
+3. **Inga (ꯏꯉꯥ)** - Beginning of the monsoon
+4. **Ingen (ꯏꯉꯦꯟ)** - Peak summer and agricultural planting
+5. **Thawan (ꯊꯥꯋꯥꯟ)** - Month of seasonal rites
+6. **Langban (ꯂꯥꯡꯕꯥꯟ)** - Month of ancestral remembrance (*Tarpan*) and Heikru Hidongba
+7. **Mera (ꯃꯦꯔꯥ)** - Month of *Mera Chaoren Houba*, *Mera Houchongba*, and festival of lights
+8. **Hiyangei (ꯍꯤꯌꯥꯡꯒꯩ)** - Month of *Ningol Chakkouba*
+9. **Poinu (ꯄꯣꯏꯅꯨ)** - Winter month of harvest, abundance, and reverence
+10. **Wakching (ꯋꯥꯛꯆꯤꯡ)** - Deep winter month featuring *Imoinu Iratpa* (Wakching 12)
+11. **Phairen (ꯐꯥꯏꯔꯦꯟ)** - Month of clearing and renewal
+12. **Lamta (ꯂꯥꯝꯇꯥ)** - Month of *Yaoshang* (Holi) and sacred ancestral purifications
+
+### 2. Traditional Lunar Features
+- **Thaban (ꯊꯥꯕꯥꯟ / Tithi)**: The precise lunar day index within the waxing (*Shukla Paksha*) or waning (*Krishna Paksha*) cycle.
+- **Tatnaba (ꯇꯠꯅꯕ)**: Culturally inauspicious dates for embarking on travel or starting auspicious construction.
+- **Thasi Maikei (ꯊꯥꯁꯤ ꯃꯥꯏꯀꯩ)**: The monthly cardinal direction (*Awang, Nongpok, Makha, Nongchup*) to avoid on specific undertakings.
+- **Yek Salai (ꯌꯦꯛ ꯁꯥꯂꯥꯏ)**: The seven ancestral clans of the Meitei community (*Ningthouja, Luwang, Khuman, Angom, Moirang, Kha-Nganba, Salai-Leishangthem*), each associated with sacred totems and cultural customs.
+
+### 3. Classification of Days
+The calendar strictly separates joyful festivals from solemn memorial days:
+- **Festivals (ꯀꯨꯝꯍꯩ)**: Joyous cultural celebrations such as Cheiraoba, Yaoshang, Ningol Chakkouba, Kang (Rath Yatra), and Mera Houchongba.
+- **Memorials (ꯅꯤꯡꯁꯤꯡ ꯅꯨꯃꯤꯠ)**: Solemn days of historical remembrance, including *May 3 Black Day*, *June 18 Great June Uprising Day (Manipur Integrity Day)*, and *Puya Meithaba (Mera 17)*.
+- **Rituals (ꯂꯥꯏ ꯊꯧꯔꯝ)**: Sacred religious ceremonies such as Imoinu Iratpa and Sanamahi Cheng Hongba.
+- **Government Holidays (ꯄꯣꯊꯥ ꯅꯨꯃꯤꯠ)**: Official public holidays gazetted by the Government of Manipur.
+
+---
+
+## Technology Stack
+- **Framework**: React 19, TypeScript
+- **Styling**: Tailwind CSS v4, Vanilla CSS Design System with glassmorphism and HSL color harmony
+- **Motion**: `motion` (Framer Motion v12) for Apple-style spring modal dialogs
+- **Bundler & Tooling**: Vite 6, `@tailwindcss/vite`
+- **PWA Capabilities**: Service Worker v2.3.4, offline caching, Web App Manifest, Install Prompt API
+- **Icons**: Lucide React vector icons
+- **Zero-backend architecture**: All astronomical calculations and calendar datasets run 100% locally on device in JSON format.
+
+---
+
+## Features
+- **Tri-Script Support**: Seamless 1-tap switching between **English**, **Meitei Mayek (ꯃꯩꯇꯩ ꯃꯌꯦꯛ)**, and **Bengali (বাংলা)** scripts across all views.
+- **Desktop Command Palette (Spotlight Search)**: Keyboard-friendly (`Ctrl+K` / `⌘K`) modal with instant category filters (*Holidays, Memorials, Festivals, Rituals, Moon Phases*).
+- **Responsive Almanac & Calendar Grid**: Responsive 3-column layout on desktop, dynamic viewport height scaling, and native touch navigation on mobile.
+- **Dark & Light Modes**: System preference synchronization with manual toggle.
+- **Privacy First**: No third-party tracking cookies, no advertisements, and 100% functional without an active internet connection.
+
+---
+
+## Author & Cultural Stewardship
+Created and maintained by **Banishwor Athokpam**, independent mobile & web software engineer dedicated to preserving indigenous Manipuri digital heritage.

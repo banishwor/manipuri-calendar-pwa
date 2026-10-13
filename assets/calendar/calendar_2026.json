@@ -261,9 +261,7 @@
     "month": "PHAIREN",
     "day": 27,
     "festivals": [
-      "2nd_saturday"
-    ],
-    "events": [
+      "2nd_saturday",
       "valentine_day"
     ]
   },
@@ -279,7 +277,7 @@
     "gregorian": "2026-02-16",
     "month": "PHAIREN",
     "day": 29,
-    "events": [
+    "festivals": [
       "sivarati"
     ]
   },
@@ -310,7 +308,7 @@
     "gregorian": "2026-02-21",
     "month": "LAMTA",
     "day": 4,
-    "events": [
+    "festivals": [
       "saroi_khangba"
     ]
   },
@@ -357,7 +355,7 @@
     "gregorian": "2026-02-28",
     "month": "LAMTA",
     "day": 12,
-    "events": [
+    "festivals": [
       "saroi_khangba"
     ]
   },
@@ -385,6 +383,9 @@
     "day": 16,
     "events": [
       "pechakari"
+    ],
+    "festivals": [
+      "yaoshang_2nd"
     ]
   },
   {
@@ -401,7 +402,7 @@
     "gregorian": "2026-03-07",
     "month": "LAMTA",
     "day": 19,
-    "events": [
+    "festivals": [
       "saroi_khangba"
     ]
   },
@@ -442,7 +443,7 @@
     "gregorian": "2026-03-14",
     "month": "LAMTA",
     "day": 25,
-    "events": [
+    "festivals": [
       "saroi_khangba"
     ]
   },
@@ -556,7 +557,7 @@
     "gregorian": "2026-04-01",
     "month": "SAJIBU",
     "day": 14,
-    "events": [
+    "festivals": [
       "april_fool"
     ]
   },
@@ -741,6 +742,9 @@
     "day": 15,
     "events": [
       "jatra_kali"
+    ],
+    "festivals": [
+      "may_day"
     ]
   },
   {
@@ -1351,7 +1355,7 @@
     "gregorian": "2026-08-14",
     "month": "THAWAN",
     "day": 2,
-    "events": [
+    "festivals": [
       "manipur_independence_day"
     ]
   },
@@ -1387,7 +1391,7 @@
     "gregorian": "2026-08-20",
     "month": "THAWAN",
     "day": 8,
-    "events": [
+    "festivals": [
       "meitei_longi_numit"
     ]
   },
@@ -1420,7 +1424,7 @@
     "gregorian": "2026-08-26",
     "month": "THAWAN",
     "day": 13,
-    "events": [
+    "festivals": [
       "milad_un_nabi"
     ]
   },
@@ -1436,7 +1440,7 @@
     "gregorian": "2026-08-28",
     "month": "THAWAN",
     "day": 15,
-    "events": [
+    "festivals": [
       "raksha_bandhan"
     ]
   },
@@ -1483,7 +1487,7 @@
     "gregorian": "2026-09-04",
     "month": "THAWAN",
     "day": 23,
-    "events": [
+    "festivals": [
       "krishna_jarma"
     ]
   },
@@ -1491,7 +1495,7 @@
     "gregorian": "2026-09-05",
     "month": "THAWAN",
     "day": 24,
-    "events": [
+    "festivals": [
       "teachers_day"
     ]
   },
@@ -1704,7 +1708,7 @@
     "gregorian": "2026-10-11",
     "month": "MERA",
     "day": 1,
-    "events": [
+    "festivals": [
       "mera_chouren_houba"
     ]
   },
@@ -1794,7 +1798,7 @@
     "gregorian": "2026-10-26",
     "month": "MERA",
     "day": 15,
-    "events": [
+    "festivals": [
       "mera_hou_chongba"
     ]
   },
@@ -1832,7 +1836,10 @@
   {
     "gregorian": "2026-11-01",
     "month": "MERA",
-    "day": 22
+    "day": 22,
+    "festivals": [
+      "kut"
+    ]
   },
   {
     "gregorian": "2026-11-02",
@@ -1881,7 +1888,7 @@
     "gregorian": "2026-11-10",
     "month": "HIYANGEI",
     "day": 1,
-    "events": [
+    "festivals": [
       "gorbardhan_puja"
     ]
   },
@@ -1969,7 +1976,7 @@
     "gregorian": "2026-11-24",
     "month": "HIYANGEI",
     "day": 15,
-    "events": [
+    "festivals": [
       "mera_wa_fukpa"
     ]
   },
@@ -2169,7 +2176,7 @@
     "gregorian": "2026-12-31",
     "month": "POINU",
     "day": 23,
-    "events": [
+    "festivals": [
       "bye_bye"
     ]
   }
