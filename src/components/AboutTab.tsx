@@ -18,21 +18,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({
   const [shareCopied, setShareCopied] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
 
-  // Localized section titles
-  const isMayek = languageMode === LanguageMode.MEITEI_MAYEK;
-  const isBengali = languageMode === LanguageMode.BENGALI;
-
-  const headerTitle = isBengali 
-    ? 'তথ্য ও নির্দেশিকা' 
-    : isMayek 
-      ? 'ꯏ-ꯄꯥꯎ ꯑꯃꯁꯨꯡ ꯂꯝꯖꯤꯡ' 
-      : 'Information & Guide';
-
-  const headerSubtitle = isBengali
-    ? 'অ্যাপ্লিকেশন, ডেভেলপার এবং ঐতিহ্য রক্ষার বিশদ বিবরণ'
-    : isMayek
-      ? 'ꯑꯦꯞ, ꯁꯦꯝꯕꯃꯤ ꯑꯃꯁꯨꯡ ꯆꯠꯅꯕꯤ ꯀꯟꯕꯒꯤ ꯋꯥꯐꯝ'
-      : 'About the application, developer, and cultural preservation mission';
+  const headerTitle = 'Information & Guide';
+  const headerSubtitle = 'About the application, developer, and cultural preservation mission';
 
   const handleShare = async () => {
     const fullUrl = window.location.href.split('#')[0].split('?')[0];
@@ -76,7 +63,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-between overflow-y-auto select-none pr-1 pb-16 md:pb-0 scrollbar-thin">
+    <div className="relative w-full max-w-full h-full flex flex-col justify-between overflow-y-auto overflow-x-hidden select-none px-0.5 pb-16 md:pb-0 scrollbar-thin">
       {/* Ambient Liquid Glass Backdrop Orbs */}
       <div className="absolute top-2 left-1/4 w-80 h-80 bg-rose-500/10 dark:bg-rose-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 right-12 w-72 h-72 bg-amber-500/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />

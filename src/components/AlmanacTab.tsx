@@ -425,11 +425,7 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
                 {directionNative} · {directionEng}
               </span>
               <p className="text-[10px] text-gray-500 dark:text-gray-400 font-medium mt-0.5">
-                {languageMode === LanguageMode.BENGALI 
-                  ? `${selectedMonthDisplayName} মাসে এই দিকে যাত্রা বর্জনীয়` 
-                  : languageMode === LanguageMode.MEITEI_MAYEK 
-                    ? `${selectedMonthDisplayName} ꯊꯥꯁꯤꯗ ꯃꯥꯏꯀꯩ ꯑꯁꯤꯗ ꯈꯣꯡꯆꯠ ꯆꯠꯂꯣꯏꯗꯕ` 
-                    : `Inauspicious direction for commencement of journey in ${selectedMonth}`}
+                Inauspicious direction for commencement of journey in {selectedMonth}
               </p>
             </div>
           </div>
@@ -600,7 +596,7 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
                 <div className="w-full flex flex-col gap-1.5 mt-0.5">
                   <div className="flex items-center justify-between px-0.5">
                     <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-400">
-                      {languageMode === LanguageMode.BENGALI ? 'মাস নির্বাচন করুন' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯊꯥ ꯈꯜꯂꯨ' : 'SELECT MONTH'}
+                      SELECT MONTH
                     </span>
                     <span className="text-[9.5px] font-bold text-gray-400">
                       {selectedMonth} ({Translator.translateDirection(monthConfigs[selectedMonth]?.thasiMaikei || '', languageMode, translations)})
@@ -667,11 +663,7 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
                       </span>
                     </div>
                     <p className="text-[11px] text-gray-600 dark:text-gray-400 mt-0.5 leading-snug">
-                      {languageMode === LanguageMode.BENGALI
-                        ? `${Translator.translateMonth(selectedMonth, languageMode, translations)} মাসে এই দিকে যাত্রা ও শুভ কাজ বর্জনীয়।`
-                        : languageMode === LanguageMode.MEITEI_MAYEK
-                          ? `${Translator.translateMonth(selectedMonth, languageMode, translations)} ꯊꯥꯁꯤꯗ ꯃꯥꯏꯀꯩ ꯑꯁꯤꯗ ꯈꯣꯡꯆꯠ ꯆꯠꯂꯣꯏꯗꯕꯅꯤ꯫`
-                          : `Where the new moon resides. Journeys directed towards ${DIRECTION_METADATA[monthConfigs[selectedMonth]?.thasiMaikei]?.en || monthConfigs[selectedMonth]?.thasiMaikei} are ill-omened in ${selectedMonth}.`}
+                      Where the new moon resides. Journeys directed towards {DIRECTION_METADATA[monthConfigs[selectedMonth]?.thasiMaikei]?.en || monthConfigs[selectedMonth]?.thasiMaikei} are ill-omened in {selectedMonth}.
                     </p>
                   </div>
                 </div>

@@ -213,11 +213,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({
             {/* Left Content Area (Overlaid on clean opaque backing) */}
             <div className="relative z-10 flex flex-col gap-2 max-w-[62%]">
               <span className="text-[10px] font-black uppercase tracking-widest text-rose-800 dark:text-rose-400">
-                {languageMode === LanguageMode.BENGALI 
-                  ? 'আজকের মণিপুরী তারিখ' 
-                  : languageMode === LanguageMode.MEITEI_MAYEK 
-                    ? 'ꯉꯁꯤꯒꯤ ꯃꯅꯤꯄꯨꯔꯤ ꯊꯥ' 
-                    : "TODAY'S MANIPURI DATE"}
+                TODAY'S DATE
               </span>
 
               {/* Bold Primary Date Headline */}
@@ -566,7 +562,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({
           {todayMonthConfig && (
             <div className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-3.5 lg:p-4 shadow-sm flex flex-col justify-between gap-2 min-h-0 shrink-0">
               <span className="text-[10px] font-black uppercase tracking-widest text-rose-800 dark:text-rose-400">
-                {Translator.translateMonth(todayDay?.month || '', languageMode, translations)} {languageMode === LanguageMode.BENGALI ? 'মাসের নির্দেশিকা' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯊꯥꯒꯤ ꯂꯝꯖꯤꯡ' : 'MONTH GUIDELINES'}
+                {todayDay?.month?.toUpperCase() || ''} MONTH GUIDELINES
               </span>
 
               <div className="grid grid-cols-2 gap-2.5">
@@ -629,10 +625,10 @@ export const TodayTab: React.FC<TodayTabProps> = ({
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-black tracking-tight text-gray-900 dark:text-white">
-                {languageMode === LanguageMode.BENGALI ? 'আজকের তারিখ' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯉꯁꯤꯒꯤ ꯅꯨꯃꯤꯠ' : "Today's Date"}
+                Today's Date
               </h2>
               <p className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
-                {languageMode === LanguageMode.BENGALI ? 'মণিপুরী সনাতন চন্দ্র পঞ্জিকা' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯃꯅꯤꯄꯨꯔꯤ ꯆꯩꯆꯠ' : 'Manipuri Traditional Lunar Calendar'}
+                Manipuri Traditional Lunar Calendar
               </p>
             </div>
             <div className="flex items-center gap-1.5">
@@ -693,11 +689,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({
                 {/* Eyebrow Label & Season Pill */}
                 <div className="flex items-center justify-between">
                   <span className="text-[9.5px] font-black uppercase tracking-widest text-rose-200/80">
-                    {languageMode === LanguageMode.BENGALI 
-                      ? 'আজকের মণিপুরী তারিখ' 
-                      : languageMode === LanguageMode.MEITEI_MAYEK 
-                        ? 'ꯉꯁꯤꯒꯤ ꯃꯅꯤꯄꯨꯔꯤ ꯊꯥ' 
-                        : "TODAY'S MANIPURI DATE"}
+                    TODAY'S DATE
                   </span>
                   {season && (
                     <span className="text-[9px] font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-rose-100 border border-white/10">
@@ -873,7 +865,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({
             {todayMonthConfig && (
               <div className="flex flex-col gap-1.5">
                 <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-400 px-0.5">
-                  {Translator.translateMonth(todayDay?.month || '', languageMode, translations)} {languageMode === LanguageMode.BENGALI ? 'মাসের নির্দেশিকা' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯊꯥꯒꯤ ꯂꯝꯖꯤꯡ' : 'MONTH GUIDELINES'}
+                  {todayDay?.month?.toUpperCase() || ''} MONTH GUIDELINES
                 </span>
 
                 <div className="grid grid-cols-2 gap-2.5">
