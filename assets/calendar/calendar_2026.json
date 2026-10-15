@@ -1755,7 +1755,8 @@
     "month": "MERA",
     "day": 8,
     "events": [
-      "bor_numit"
+      "bor_numit",
+      "manipur_police_day"
     ]
   },
   {
@@ -1768,7 +1769,7 @@
     "month": "MERA",
     "day": 10,
     "events": [
-      "police_day_kwak_tanba"
+      "kwak_tanba"
     ]
   },
   {
