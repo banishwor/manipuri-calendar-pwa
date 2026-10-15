@@ -163,7 +163,71 @@ export const AboutTab: React.FC<AboutTabProps> = ({
             </div>
           </div>
 
-          {/* Card 2: Manipuri Apps Ecosystem (Dual Apps in 2 Columns) */}
+          {/* Card 2: Ethics & Origin (Dual Split: Why PWA on iOS & Why 100% Ad-Free) */}
+          <div className="relative overflow-hidden rounded-3xl border border-white/80 dark:border-white/10 bg-white/75 dark:bg-gray-900/65 backdrop-blur-2xl p-4 shadow-2xs">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent pointer-events-none" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {/* Part A: Why PWA on iPhone & iOS */}
+              <div className="flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <div className="w-5 h-5 rounded-lg bg-amber-500/10 dark:bg-amber-400/15 border border-amber-500/20 flex items-center justify-center text-amber-800 dark:text-amber-400 shrink-0">
+                      <Smartphone className="w-3 h-3" />
+                    </div>
+                    <h4 className="text-xs font-extrabold text-gray-900 dark:text-white">
+                      Why PWA for iPhone &amp; iOS?
+                    </h4>
+                  </div>
+
+                  <p className="text-[10.5px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                    As a solo independent developer creating a free cultural utility with no revenue or ads, I cannot afford Apple’s recurring $99/year (₹8,300+/year) App Store developer fee. I custom-crafted this Progressive Web App (PWA) so iPhone, iPad, and desktop users still enjoy a fast, offline-ready, app-like experience at zero cost.
+                  </p>
+                </div>
+
+                <div className="mt-2.5 p-2 rounded-xl bg-amber-500/10 dark:bg-amber-950/30 border border-amber-500/20">
+                  <span className="text-[9.5px] font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1">
+                    <span>💡</span>
+                    <span>Install on iPhone: In Safari, tap Share (⬆️) → &apos;Add to Home Screen&apos;</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Part B: Why 100% Ad-Free */}
+              <div className="flex flex-col justify-between sm:border-l sm:border-gray-100 sm:dark:border-gray-800/60 sm:pl-3.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-100 dark:border-gray-800/60">
+                <div>
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <div className="w-5 h-5 rounded-lg bg-rose-500/10 dark:bg-rose-400/15 border border-rose-500/20 flex items-center justify-center text-rose-800 dark:text-rose-400 shrink-0">
+                      <Heart className="w-3 h-3 fill-current" />
+                    </div>
+                    <h4 className="text-xs font-extrabold text-gray-900 dark:text-white">
+                      Why 100% Ad-Free?
+                    </h4>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    {[
+                      'Zero full-screen or popup ads',
+                      'No "Watch Ad to Continue"',
+                      'Zero telemetry or hidden tracking',
+                      'Respects sacred lunar and cultural time'
+                    ].map((item) => (
+                      <div key={item} className="flex items-center gap-1.5 text-[10.5px] text-gray-700 dark:text-gray-300 font-medium">
+                        <CheckCircle2 className="w-3 h-3 text-rose-700 dark:text-rose-400 shrink-0" />
+                        <span className="truncate">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <span className="text-[9.5px] font-bold text-rose-800 dark:text-rose-400 mt-2 block">
+                  Built purely for cultural preservation &amp; community service
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Manipuri Apps Ecosystem (3 Apps in 3 Columns) */}
           <div className="relative overflow-hidden rounded-3xl border border-white/80 dark:border-white/10 bg-white/75 dark:bg-gray-900/65 backdrop-blur-2xl p-4 shadow-2xs flex flex-col gap-2.5">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent pointer-events-none" />
 
@@ -184,13 +248,50 @@ export const AboutTab: React.FC<AboutTabProps> = ({
               </div>
 
               <span className="text-[8.5px] font-bold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-800 dark:text-rose-400 border border-rose-500/20">
-                2 Companion Apps
+                3 Companion Apps
               </span>
             </div>
 
-            {/* 2 Apps Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {/* App 1: Yek Salai */}
+            {/* 3 Apps Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              {/* App 1: Manipuri Calendar (Android) */}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.manipurcalendar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800/80 bg-white/80 dark:bg-gray-800/50 p-2.5 hover:border-rose-400/50 hover:bg-rose-50/20 dark:hover:bg-rose-950/20 transition-all flex flex-col justify-between gap-2"
+              >
+                <div className="flex items-start gap-2.5">
+                  <div className="w-11 h-11 rounded-xl overflow-hidden shadow-2xs border border-gray-200 dark:border-gray-700 shrink-0 bg-rose-50 dark:bg-gray-800 p-1 flex items-center justify-center">
+                    <img
+                      src="./icon-192.png"
+                      alt="Manipuri Calendar Android App"
+                      className="w-full h-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h5 className="text-xs font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors truncate leading-tight">
+                      Manipuri Calendar
+                    </h5>
+                    <span className="text-[8.5px] font-bold text-rose-800 dark:text-rose-400 uppercase tracking-wider block mt-0.5">
+                      Android Edition
+                    </span>
+                    <p className="text-[10px] text-gray-600 dark:text-gray-300 leading-snug line-clamp-2 mt-1">
+                      Native Android app with home screen widgets, lunar alerts &amp; Play Store auto-updates.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-1.5 border-t border-gray-100 dark:border-gray-800/60 text-[9px]">
+                  <span className="text-gray-400 font-semibold">Google Play</span>
+                  <span className="inline-flex items-center gap-0.5 font-bold text-rose-800 dark:text-rose-400 group-hover:translate-x-0.5 transition-transform">
+                    <span>Install</span>
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </span>
+                </div>
+              </a>
+
+              {/* App 2: Yek Salai */}
               <a
                 href="https://play.google.com/store/apps/details?id=com.yeksalaiapp"
                 target="_blank"
@@ -207,13 +308,13 @@ export const AboutTab: React.FC<AboutTabProps> = ({
                   </div>
                   <div className="min-w-0 flex-1">
                     <h5 className="text-xs font-black text-gray-900 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400 transition-colors truncate leading-tight">
-                      Yek Salai · Meitei Clan
+                      Yek Salai · Clan
                     </h5>
                     <span className="text-[8.5px] font-bold text-rose-800 dark:text-rose-400 uppercase tracking-wider block mt-0.5">
                       Genealogy &amp; Rules
                     </span>
                     <p className="text-[10px] text-gray-600 dark:text-gray-300 leading-snug line-clamp-2 mt-1">
-                      Identify 7 Salai, look up surnames (Yumnak), and check marriage compatibility rules (Yek Tinnaba).
+                      Identify 7 Salai, look up surnames (Yumnak), and check marriage compatibility rules.
                     </p>
                   </div>
                 </div>
@@ -227,7 +328,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({
                 </div>
               </a>
 
-              {/* App 2: Manipur Calculator */}
+              {/* App 3: Manipur Calculator */}
               <a
                 href="https://play.google.com/store/apps/details?id=com.manipurcalculator.app"
                 target="_blank"
@@ -250,7 +351,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({
                       Traditional Converters
                     </span>
                     <p className="text-[10px] text-gray-600 dark:text-gray-300 leading-snug line-clamp-2 mt-1">
-                      Land converters (Pari, Lourak, Sangam), gold units (San, Chaning, Tola), and finance tools.
+                      Land converters (Pari, Lourak, Sangam) and gold units (San, Chaning, Tola).
                     </p>
                   </div>
                 </div>
@@ -263,63 +364,6 @@ export const AboutTab: React.FC<AboutTabProps> = ({
                   </span>
                 </div>
               </a>
-            </div>
-          </div>
-
-          {/* Card 3: Ethics & Origin (Dual Split: Why Ad-Free & Why PWA) */}
-          <div className="relative overflow-hidden rounded-3xl border border-white/80 dark:border-white/10 bg-white/75 dark:bg-gray-900/65 backdrop-blur-2xl p-4 shadow-2xs">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent pointer-events-none" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {/* Part A: Why Ad-Free */}
-              <div className="flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <div className="w-5 h-5 rounded-lg bg-rose-500/10 dark:bg-rose-400/15 border border-rose-500/20 flex items-center justify-center text-rose-800 dark:text-rose-400 shrink-0">
-                      <Heart className="w-3 h-3 fill-current" />
-                    </div>
-                    <h4 className="text-xs font-extrabold text-gray-900 dark:text-white">
-                      Why 100% Ad-Free?
-                    </h4>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    {[
-                      'Zero full-screen or popup ads',
-                      'No "Watch Ad to Continue"',
-                      'Zero telemetry or hidden tracking',
-                      'Respects sacred lunar time'
-                    ].map((item) => (
-                      <div key={item} className="flex items-center gap-1.5 text-[10.5px] text-gray-700 dark:text-gray-300 font-medium">
-                        <CheckCircle2 className="w-3 h-3 text-rose-700 dark:text-rose-400 shrink-0" />
-                        <span className="truncate">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Part B: Why PWA on iOS & Web */}
-              <div className="flex flex-col justify-between sm:border-l sm:border-gray-100 sm:dark:border-gray-800/60 sm:pl-3.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-100 dark:border-gray-800/60">
-                <div>
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <div className="w-5 h-5 rounded-lg bg-amber-500/10 dark:bg-amber-400/15 border border-amber-500/20 flex items-center justify-center text-amber-800 dark:text-amber-400 shrink-0">
-                      <Smartphone className="w-3 h-3" />
-                    </div>
-                    <h4 className="text-xs font-extrabold text-gray-900 dark:text-white">
-                      Why PWA for iPhone &amp; Web?
-                    </h4>
-                  </div>
-
-                  <p className="text-[10.5px] text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Companion to our <a href="https://play.google.com/store/apps/details?id=com.manipurcalendar" target="_blank" rel="noopener noreferrer" className="text-gray-900 dark:text-white font-bold underline hover:text-rose-800 dark:hover:text-rose-400 transition-colors">Android app</a>. To avoid Apple’s yearly $99 developer fee for a free utility, I custom-crafted this PWA so iPhone &amp; desktop users get full offline access with zero ads.
-                  </p>
-                </div>
-
-                <span className="text-[9.5px] font-bold text-amber-800 dark:text-amber-400 mt-2 block">
-                  Tip: Safari 'Share' → 'Add to Home Screen'
-                </span>
-              </div>
             </div>
           </div>
 

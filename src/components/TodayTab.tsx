@@ -149,6 +149,9 @@ export const TodayTab: React.FC<TodayTabProps> = ({
     day: 'numeric'
   });
 
+  // ISO string for navigating to today's details (e.g. "2026-10-15")
+  const todayStr = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+
   // Calculate greeting depending on current local time & language mode
   const currentHour = today.getHours();
   const greetingData = getGreetingText(currentHour, languageMode);
@@ -503,7 +506,7 @@ export const TodayTab: React.FC<TodayTabProps> = ({
           <div className="rounded-3xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-4 lg:p-5 shadow-sm flex flex-col justify-between flex-1 min-h-0">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black uppercase tracking-widest text-rose-800 dark:text-rose-400">
-                UPCOMING FESTIVALS
+                UPCOMING EVENTS
               </span>
               <span className="text-[9px] font-bold text-gray-400">
                 {upcomingFestivals.length} events loaded
@@ -617,166 +620,247 @@ export const TodayTab: React.FC<TodayTabProps> = ({
       {/* =========================================================================
           MOBILE VIEW (100% PRESERVED & UNTOUCHED UNDER MD BREAKPOINT < 768px)
           ========================================================================= */}
-      <div className="md:hidden flex flex-col gap-6 pb-24">
-        {/* Header Toolbar */}
-        <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Today's Date</h2>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Manipuri Traditional Lunar Calendar</p>
+      {/* =========================================================================
+          MOBILE VIEW (OPTIMIZED FOR ZERO-SCROLL VIEWPORT FIT ON REGULAR DAYS)
+          ========================================================================= */}
+      <div className="md:hidden flex flex-col gap-3.5 pb-24">
+        {/* Header Toolbar & Dynamic Cultural Greeting */}
+        <div className="flex flex-col gap-1.5 pb-2 border-b border-gray-100 dark:border-gray-800/80">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-black tracking-tight text-gray-900 dark:text-white">
+                {languageMode === LanguageMode.BENGALI ? 'আজকের তারিখ' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯉꯁꯤꯒꯤ ꯅꯨꯃꯤꯠ' : "Today's Date"}
+              </h2>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
+                {languageMode === LanguageMode.BENGALI ? 'মণিপুরী সনাতন চন্দ্র পঞ্জিকা' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯃꯅꯤꯄꯨꯔꯤ ꯆꯩꯆꯠ' : 'Manipuri Traditional Lunar Calendar'}
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <button 
+                onClick={onOpenSearch}
+                className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                title="Search traditional days and holidays"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={onOpenSettings}
+                className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                title="Settings"
+              >
+                <Settings className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button 
-              onClick={onOpenSearch}
-              className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              title="Search traditional days and holidays"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={onOpenSettings}
-              className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              title="Settings"
-            >
-              <Settings className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
 
-        {/* Greeting Banner */}
-        <div className="flex flex-col gap-1">
-          <h3 className="text-lg font-black text-rose-800 dark:text-rose-400 tracking-wide">
-            Khurumjari / ꯈꯨꯔꯨꯝꯖꯔꯤ
-          </h3>
-          <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-            Greeting of peace and longevity • {meiteiGreeting}
-          </p>
-        </div>
-
-        {/* Gregorian Banner Block with soft gradient */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-800 to-rose-950 p-6 text-white shadow-xl dark:shadow-rose-950/20">
-          <div className="relative z-10 flex flex-col items-center text-center gap-1.5">
-            <span className="text-[10px] font-black uppercase tracking-widest text-rose-200/80">
-              Gregorian Date
+          {/* Sub-row Greeting dynamically adapting according to current local hour & language */}
+          <div className="flex items-center justify-between gap-2 text-xs pt-0.5">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="font-bold text-rose-800 dark:text-rose-400 shrink-0">
+                {greetingData.title}
+                {languageMode === LanguageMode.ENGLISH && ' · ꯈꯨꯔꯨꯝꯖꯔꯤ'}
+              </span>
+              <span className="text-gray-300 dark:text-gray-700">•</span>
+              <span className="font-semibold text-gray-700 dark:text-gray-300 truncate">
+                {greetingData.period}
+              </span>
+            </div>
+            <span className="text-[10px] text-gray-400 dark:text-gray-500 font-medium shrink-0 hidden sm:inline">
+              {greetingData.sub}
             </span>
-            <h4 className="text-xl font-bold md:text-2xl tracking-tight text-white">
-              {formattedGregorian}
-            </h4>
           </div>
-          <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-rose-500/10 blur-3xl pointer-events-none" />
-          <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-rose-500/10 blur-3xl pointer-events-none" />
         </div>
 
         {!todayDay ? (
-          <div className="flex flex-col items-center justify-center p-8 bg-amber-50/50 dark:bg-amber-950/10 border border-amber-100 dark:border-amber-900/30 rounded-3xl text-center gap-4">
-            <CalendarIcon className="w-12 h-12 text-amber-600 dark:text-amber-500" />
+          <div className="flex flex-col items-center justify-center p-6 bg-amber-50/50 dark:bg-amber-950/10 border border-amber-100 dark:border-amber-900/30 rounded-3xl text-center gap-3">
+            <CalendarIcon className="w-10 h-10 text-amber-600 dark:text-amber-500" />
             <div className="flex flex-col gap-1">
-              <h5 className="font-bold text-gray-900 dark:text-white">Active Calendar Check</h5>
-              <p className="text-sm text-gray-600 dark:text-gray-300 max-w-sm">
+              <h5 className="font-bold text-gray-900 dark:text-white text-sm">Active Calendar Check</h5>
+              <p className="text-xs text-gray-600 dark:text-gray-300 max-w-sm">
                 Today's date falls outside the pre-loaded calendar data. Please browse the full calendar view to view traditional days and events.
               </p>
             </div>
           </div>
         ) : (
           <>
-            {/* Manipuri Lunar Date Card */}
-            <div className="rounded-2xl border border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 p-4 shadow-sm flex flex-col gap-3">
-              <div className="text-center">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 dark:text-rose-400">
-                  Manipuri Lunar Date
-                </span>
-              </div>
+            {/* 1. Primary Manipuri Date Hero Card with Integrated Frosted Bottom Dock */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-900 via-rose-950 to-rose-900 p-4 sm:p-5 text-white shadow-lg border border-rose-800/40">
+              {/* Subtle ambient lighting */}
+              <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-rose-500/15 blur-2xl pointer-events-none" />
+              <div className="absolute -left-8 -bottom-8 w-32 h-32 rounded-full bg-amber-500/10 blur-2xl pointer-events-none" />
 
-              <div className="grid grid-cols-2 gap-2 bg-gray-50/50 dark:bg-gray-800/20 p-2.5 rounded-xl border border-gray-100/50 dark:border-gray-800/50 text-center relative items-center">
-                <div className="flex flex-col items-center">
-                  <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Month</span>
-                  <span className="text-base font-black text-gray-900 dark:text-white tracking-tight mt-0.5">{todayDay.month}</span>
-                  {languageMode !== LanguageMode.ENGLISH && (
-                    <span className="text-xs font-bold text-rose-800 dark:text-rose-400 mt-0.5">
-                      {Translator.translateMonth(todayDay.month, languageMode, translations)}
+              <div className="relative z-10 flex flex-col gap-2.5">
+                {/* Eyebrow Label & Season Pill */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[9.5px] font-black uppercase tracking-widest text-rose-200/80">
+                    {languageMode === LanguageMode.BENGALI 
+                      ? 'আজকের মণিপুরী তারিখ' 
+                      : languageMode === LanguageMode.MEITEI_MAYEK 
+                        ? 'ꯉꯁꯤꯒꯤ ꯃꯅꯤꯄꯨꯔꯤ ꯊꯥ' 
+                        : "TODAY'S MANIPURI DATE"}
+                  </span>
+                  {season && (
+                    <span className="text-[9px] font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-rose-100 border border-white/10">
+                      {season.label}
                     </span>
                   )}
                 </div>
 
-                <div className="absolute left-1/2 top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-800 -translate-x-1/2" />
+                {/* Big Bold Primary Manipuri Headline */}
+                <div className="flex flex-col gap-0.5">
+                  <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-none uppercase text-white">
+                    {todayDay.month} · {todayDay.day.join('&')}
+                  </h3>
+                  <p className="text-lg sm:text-xl font-black text-rose-200/90 tracking-wide mt-0.5">
+                    {translatedMonthString} · {translatedDayString}
+                  </p>
+                </div>
 
-                <div className="flex flex-col items-center">
-                  <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Day (Thasi)</span>
-                  <span className="text-base font-black text-gray-900 dark:text-white tracking-tight mt-0.5">{todayDay.day.join(' & ')}</span>
-                  {languageMode !== LanguageMode.ENGLISH && (
-                    <span className="text-xs font-bold text-rose-800 dark:text-rose-400 mt-0.5">
-                      {todayDay.day.map((d) => Translator.translateDigits(d.toString(), languageMode, translations)).join(' & ')}
-                    </span>
-                  )}
+                {/* Integrated Frosted Glass Dock (Gregorian + Astronomical Moon Phase) */}
+                <div className="mt-1 pt-1 border-t border-white/10">
+                  <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-2xl bg-white/10 dark:bg-black/25 backdrop-blur-md border border-white/15">
+                    {/* Left: Gregorian Date & Weekday */}
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-rose-500/20 flex items-center justify-center text-rose-200 shrink-0">
+                        <CalendarIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[7.5px] font-bold uppercase tracking-wider text-rose-200/70 leading-none">
+                          {languageMode === LanguageMode.BENGALI ? 'গ্রেগরিয়ান তারিখ' : 'Gregorian'}
+                        </span>
+                        <span className="text-xs font-bold text-white leading-tight mt-0.5 truncate">
+                          {today.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Center Hairline Divider */}
+                    <div className="h-6 w-px bg-white/20 shrink-0" />
+
+                    {/* Right: Moon Phase & Thasi Day */}
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-amber-400/20 flex items-center justify-center shrink-0">
+                        <MoonGraphic phase={todayDay.observance || ''} moonPhase={todayDay.moonPhase || 'waxing'} size={20} />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-[7.5px] font-bold uppercase tracking-wider text-amber-200/80 leading-none">
+                          {languageMode === LanguageMode.BENGALI ? 'চন্দ্র পর্ব' : 'Moon Phase'}
+                        </span>
+                        <span className="text-xs font-bold text-amber-100 leading-tight mt-0.5 truncate">
+                          {todayDay.observance 
+                            ? (languageMode === LanguageMode.BENGALI 
+                                ? (todayDay.observance === 'purnima' ? 'পূর্ণিমা' : todayDay.observance === 'thasi' ? 'থাসী' : todayDay.observance)
+                                : languageMode === LanguageMode.MEITEI_MAYEK
+                                  ? (todayDay.observance === 'purnima' ? 'ꯄꯨꯔꯅꯤꯃꯥ' : todayDay.observance === 'thasi' ? 'ꯊꯥꯁꯤ' : todayDay.observance)
+                                  : (todayDay.observance.charAt(0).toUpperCase() + todayDay.observance.slice(1)))
+                            : (languageMode === LanguageMode.BENGALI ? 'শুক্লপক্ষ' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯊꯥ ꯊꯥꯡꯖꯕ' : 'Waxing')} 
+                          {' · '}
+                          {todayDay.day.map((d) => Translator.translateDigits(d.toString(), languageMode, translations)).join('&')}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {todayDay.observance && (
-                <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 dark:border-amber-500/10 p-2 flex items-center gap-3">
-                  <div className="flex-shrink-0 bg-white dark:bg-gray-800 rounded-full p-1 shadow-sm">
-                    <MoonGraphic
-                      phase={todayDay.observance}
-                      moonPhase={todayDay.moonPhase}
-                      size={28}
-                    />
-                  </div>
-                  <div>
-                    <span className="text-[8px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-500 block leading-none">
-                      ASTRONOMICAL PHASE
-                    </span>
-                    <h5 className="text-xs font-bold text-amber-900 dark:text-amber-400 capitalize mt-0.5 leading-none">
-                      {todayDay.observance} {todayDay.moonPhase && `(${todayDay.moonPhase})`}
-                    </h5>
-                  </div>
-                </div>
-              )}
             </div>
 
-            {/* Upcoming Festivals Slider */}
+            {/* 2. Today's Occasion & Observance Card (Conditional: Only renders if today has occasions) */}
+            {hasObservances && (
+              <div 
+                onClick={() => onNavigateToDetail(todayStr)}
+                className="rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-rose-500/5 dark:from-amber-950/30 dark:via-gray-900 dark:to-rose-950/20 p-3.5 shadow-sm hover:border-amber-400 transition-all cursor-pointer flex flex-col gap-2"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="w-6 h-6 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                      <Star className="w-3.5 h-3.5 fill-current" />
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-wider text-amber-800 dark:text-amber-400 truncate">
+                      {languageMode === LanguageMode.BENGALI ? 'আজকের উৎসব ও বিশেষ দিবস' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯉꯁꯤꯒꯤ ꯀꯨꯝꯍꯩ ꯑꯃꯁꯨꯡ ꯂꯥꯏ ꯊꯧꯔꯝ' : "Today's Occasion & Observance"}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-amber-700 dark:text-amber-400 shrink-0">
+                    <span>Details</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                {todayOccasions.slice(0, 2).map((ev) => {
+                  const badge = getCategoryBadge(ev, languageMode);
+                  return (
+                    <div key={ev.id} className="flex items-center justify-between gap-3 bg-white/70 dark:bg-gray-900/70 p-2.5 rounded-xl border border-amber-100 dark:border-amber-900/30">
+                      <div className="flex flex-col min-w-0">
+                        <h4 className="text-xs font-bold text-gray-900 dark:text-white leading-tight truncate">
+                          {ev.name}
+                        </h4>
+                        {ev.description && (
+                          <p className="text-[10.5px] text-gray-500 dark:text-gray-400 truncate mt-0.5">
+                            {ev.description}
+                          </p>
+                        )}
+                      </div>
+                      <span className={`text-[8.5px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0 ${badge.className}`}>
+                        {badge.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* 3. Upcoming Festivals Countdown Horizontal Carousel */}
             {upcomingFestivals.length > 0 && (
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between px-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-rose-800 dark:text-rose-400">
-                    Upcoming Festivals Countdown
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between px-0.5">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-400">
+                    UPCOMING EVENTS COUNTDOWN
                   </span>
-                  <span className="text-[10px] font-bold text-gray-400">
-                    {upcomingFestivals.length} events loaded
+                  <span className="text-[9px] font-bold text-gray-400">
+                    {upcomingFestivals.length} events
                   </span>
                 </div>
 
-                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-800">
-                  {upcomingFestivals.map((item, idx) => {
+                <div className="flex gap-2.5 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory scrollbar-none">
+                  {upcomingFestivals.slice(0, 6).map((item, idx) => {
                     const firstFest = item.events[0];
                     const hasHoliday = item.events.some((e) => e.isHoliday);
                     if (!firstFest) return null;
 
-                    const daysText = item.daysRemaining === 0 ? 'TODAY' : item.daysRemaining === 1 ? 'TOMORROW' : `IN ${item.daysRemaining} DAYS`;
-                    const badgeStyle = item.daysRemaining <= 3 ? 'bg-red-600 text-white' : 'bg-rose-800 text-white dark:bg-rose-400 dark:text-rose-950';
+                    const daysText = item.daysRemaining === 0 
+                      ? 'TODAY' 
+                      : item.daysRemaining === 1 
+                        ? 'TOMORROW' 
+                        : `IN ${item.daysRemaining} DAYS`;
+                    const badgeStyle = item.daysRemaining <= 3 
+                      ? 'bg-red-600 text-white' 
+                      : 'bg-rose-800 text-white dark:bg-rose-500';
 
                     return (
                       <div
                         key={`${item.date}-${idx}`}
                         onClick={() => onNavigateToDetail(item.date)}
-                        className="flex-shrink-0 w-64 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 shadow-sm hover:border-rose-300 dark:hover:border-rose-900/50 cursor-pointer transition-all flex flex-col justify-between gap-4"
+                        className="shrink-0 w-52 snap-start rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-3 shadow-sm hover:border-rose-300 dark:hover:border-rose-900/50 cursor-pointer transition-all flex flex-col justify-between gap-2.5"
                       >
-                        <div className="flex flex-col gap-3">
-                          <div className="flex items-center justify-between gap-2">
-                            <span className={`text-[9px] font-black px-2.5 py-1 rounded-lg tracking-wider ${badgeStyle}`}>{daysText}</span>
-                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                              {hasHoliday ? 'Public Holiday' : firstFest.category === 'memorial' ? 'Memorial' : firstFest.category === 'commemoration' ? 'Observance' : 'Festival'}
-                            </span>
-                          </div>
-                          <h6 className="font-extrabold text-gray-900 dark:text-white leading-tight line-clamp-2 h-10">{firstFest.name}</h6>
+                        <div className="flex items-center justify-between gap-1.5">
+                          <span className={`text-[8px] font-black px-2 py-0.5 rounded-md tracking-wider ${badgeStyle}`}>
+                            {daysText}
+                          </span>
+                          <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest truncate">
+                            {hasHoliday ? 'Holiday' : firstFest.category}
+                          </span>
                         </div>
 
-                        <div className="flex flex-col gap-1 border-t border-gray-100/50 dark:border-gray-800/50 pt-3">
-                          <div className="flex items-center gap-1.5 text-xs text-gray-400">
-                            <CalendarIcon className="w-3.5 h-3.5" />
-                            <span>{new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-xs text-rose-800 dark:text-rose-400 font-bold mt-1">
-                            <Star className="w-3.5 h-3.5" />
-                            <span>{Translator.translateMonth(item.dayData.month, languageMode, translations)} - {item.dayData.day.map((d) => Translator.translateDigits(d.toString(), languageMode, translations)).join(' & ')}</span>
-                          </div>
+                        <h5 className="font-bold text-xs text-gray-900 dark:text-white leading-tight line-clamp-1">
+                          {firstFest.name}
+                        </h5>
+
+                        <div className="flex items-center justify-between pt-1.5 border-t border-gray-100 dark:border-gray-800/60 text-[10px]">
+                          <span className="text-gray-400">
+                            {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                          </span>
+                          <span className="text-rose-800 dark:text-rose-400 font-bold truncate">
+                            {Translator.translateMonth(item.dayData.month, languageMode, translations)} · {item.dayData.day.map((d) => Translator.translateDigits(d.toString(), languageMode, translations)).join('&')}
+                          </span>
                         </div>
                       </div>
                     );
@@ -785,80 +869,44 @@ export const TodayTab: React.FC<TodayTabProps> = ({
               </div>
             )}
 
-            {/* Today's Festivals List */}
-            {todayDay.festivals && todayDay.festivals.length > 0 && (
-              <div className="rounded-3xl border border-amber-500/15 bg-amber-500/5 p-6 flex flex-col gap-4">
-                <div className="flex items-center gap-2">
-                  <Star className="w-5 h-5 text-amber-600 dark:text-amber-500 fill-current" />
-                  <span className="text-xs font-black uppercase tracking-wider text-amber-800 dark:text-amber-500">Today's Occasions &amp; Festivals</span>
-                </div>
-                <div className="flex flex-col gap-3">
-                  {todayDay.festivals.map((festId) => {
-                    const ev = eventsList.find((e) => e.id === festId);
-                    if (!ev) return null;
-                    return (
-                      <div key={festId} className="bg-white dark:bg-gray-900 p-4 rounded-2xl border border-amber-100 dark:border-amber-950/20 shadow-sm flex items-center justify-between gap-4">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-extrabold text-gray-900 dark:text-white leading-tight">{ev.name}</span>
-                          {ev.description && <p className="text-xs text-gray-500 dark:text-gray-400">{ev.description}</p>}
-                        </div>
-                        <span className={`flex-shrink-0 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${ev.isHoliday ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/30 dark:text-rose-400' : 'bg-rose-50 text-rose-700 dark:bg-rose-950/10 dark:text-rose-400/80'}`}>{ev.isHoliday ? 'Govt Holiday' : 'Festival'}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* General Events */}
-            {todayDay.events && todayDay.events.length > 0 && (
-              <div className="rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 flex flex-col gap-4">
-                <div className="flex items-center gap-2 text-rose-800 dark:text-rose-400">
-                  <Info className="w-5 h-5" />
-                  <span className="text-xs font-black uppercase tracking-wider">Today's Observances &amp; Events</span>
-                </div>
-                <div className="flex flex-col gap-3">
-                  {todayDay.events.map((evId) => {
-                    const ev = eventsList.find((e) => e.id === evId);
-                    if (!ev) return null;
-                    return (
-                      <div key={evId} className="bg-gray-50 dark:bg-gray-900 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex flex-col gap-1.5">
-                        <div className="flex items-center justify-between gap-4">
-                          <span className="font-extrabold text-gray-900 dark:text-white leading-tight">{ev.name}</span>
-                          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest ${ev.isHoliday ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/30 dark:text-amber-400' : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'}`}>{ev.isHoliday ? 'General Holiday' : ev.category.replace('_', ' ')}</span>
-                        </div>
-                        {ev.description && <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{ev.description}</p>}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Month Guidelines */}
+            {/* 4. Month Guidelines (2-Column Compact Grid) */}
             {todayMonthConfig && (
-              <div className="rounded-3xl border border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/10 p-6 flex flex-col gap-5">
-                <span className="text-[10px] font-black uppercase tracking-widest text-rose-800 dark:text-rose-400">{todayDay.month} Month Guidelines</span>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-rose-50 dark:bg-rose-950/20 flex items-center justify-center text-rose-800 dark:text-rose-400 flex-shrink-0">
-                    <MapPin className="w-5 h-5" />
+              <div className="flex flex-col gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-400 px-0.5">
+                  {Translator.translateMonth(todayDay?.month || '', languageMode, translations)} {languageMode === LanguageMode.BENGALI ? 'মাসের নির্দেশিকা' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯊꯥꯒꯤ ꯂꯝꯖꯤꯡ' : 'MONTH GUIDELINES'}
+                </span>
+
+                <div className="grid grid-cols-2 gap-2.5">
+                  {/* Col 1: Thasi Maikei Direction */}
+                  <div className="p-2.5 rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-xl bg-rose-50 dark:bg-rose-950/30 flex items-center justify-center text-rose-800 dark:text-rose-400 shrink-0">
+                      <Compass className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[7.5px] font-bold text-gray-400 uppercase tracking-widest block leading-none truncate">
+                        {languageMode === LanguageMode.BENGALI ? 'দিক (মাইকৈ)' : 'THASI MAIKEI'}
+                      </span>
+                      <span className="text-xs font-black text-gray-900 dark:text-white leading-tight block truncate mt-1">
+                        {Translator.translateDirection(todayMonthConfig.thasiMaikei, languageMode, translations)}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <h5 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Thasi Maikei Direction</h5>
-                    <p className="text-sm font-extrabold text-gray-900 dark:text-white mt-0.5">{Translator.translateDirection(todayMonthConfig.thasiMaikei, languageMode, translations)}</p>
-                  </div>
-                </div>
-                <hr className="border-gray-100 dark:border-gray-800" />
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-red-50 dark:bg-red-950/20 flex items-center justify-center text-red-600 dark:text-red-400 flex-shrink-0">
-                    <AlertTriangle className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Tatnaba (Inauspicious Days)</h5>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Ceremonially avoided weekdays:</p>
-                    <p className="text-sm font-black text-red-600 dark:text-red-400 mt-1">
-                      {todayMonthConfig.tatnaba.length > 0 ? todayMonthConfig.tatnaba.map((dayName) => Translator.translateWeekday(dayName, languageMode, translations)).join(', ') : 'None designated this month'}
-                    </p>
+
+                  {/* Col 2: Tatnaba Inauspicious Days */}
+                  <div className="p-2.5 rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 shadow-sm flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/30 flex items-center justify-center text-amber-700 dark:text-amber-400 shrink-0">
+                      <AlertTriangle className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[7.5px] font-bold text-amber-700/80 dark:text-amber-400 uppercase tracking-widest block leading-none truncate">
+                        {languageMode === LanguageMode.BENGALI ? 'তৎনবা বার' : 'TATNABA'}
+                      </span>
+                      <span className="text-xs font-black text-gray-900 dark:text-white leading-tight block truncate mt-1">
+                        {todayMonthConfig.tatnaba.length > 0 
+                          ? todayMonthConfig.tatnaba.map((dayName) => Translator.translateWeekday(dayName, languageMode, translations)).join(', ') 
+                          : 'None'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

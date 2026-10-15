@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { CalendarDay, LanguageMode, MonthConfig, Translations } from '../types';
 import { Translator } from '../utils/translator';
 import { CalendarRepository } from '../utils/calendarData';
@@ -14,6 +14,7 @@ import {
   Info
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { MaikeiCompass, DIRECTION_METADATA } from './MaikeiCompass';
 
 interface AlmanacTabProps {
   languageMode: LanguageMode;
@@ -56,45 +57,26 @@ const getSeasonInfo = (monthName: string, mode: LanguageMode) => {
   };
 };
 
-// 8 Traditional Meitei Directions metadata for Compass Dial
-const DIRECTION_METADATA: Record<string, { needleAngle: number; en: string }> = {
-  'AWANG': { needleAngle: 0, en: 'North' },
-  'CHINGKHEI': { needleAngle: 45, en: 'North-East' },
-  'NONGPOK': { needleAngle: 90, en: 'East' },
-  'MEIRAM': { needleAngle: 135, en: 'South-East' },
-  'KHA': { needleAngle: 180, en: 'South' },
-  'MAKHA': { needleAngle: 180, en: 'South' },
-  'SANTHONG': { needleAngle: 225, en: 'South-West' },
-  'NONGCHUP': { needleAngle: 270, en: 'West' },
-  'KOUBRU': { needleAngle: 315, en: 'North-West' }
-};
-
-const COMPASS_DIAL_POINTS = [
-  { key: 'AWANG', polarAngle: 270, labelEn: 'N', labelMayek: 'ꯑ' },
-  { key: 'CHINGKHEI', polarAngle: 315, labelEn: 'NE', labelMayek: 'ꯆꯤ' },
-  { key: 'NONGPOK', polarAngle: 0, labelEn: 'E', labelMayek: 'ꯅꯣ' },
-  { key: 'MEIRAM', polarAngle: 45, labelEn: 'SE', labelMayek: 'ꯃꯩ' },
-  { key: 'KHA', polarAngle: 90, labelEn: 'S', labelMayek: 'ꯈ' },
-  { key: 'SANTHONG', polarAngle: 135, labelEn: 'SW', labelMayek: 'ꯁ' },
-  { key: 'NONGCHUP', polarAngle: 180, labelEn: 'W', labelMayek: 'ꯆꯨ' },
-  { key: 'KOUBRU', polarAngle: 225, labelEn: 'NW', labelMayek: 'ꯀ' }
-];
-
 export const AlmanacTab: React.FC<AlmanacTabProps> = ({
   languageMode,
   translations,
   todayDay
 }) => {
-  const [selectedMeiteiYear, setSelectedMeiteiYear] = useState<number>(3424);
-  const minMeiteiYear = 3423;
-  const maxMeiteiYear = 3425;
-
   const currentActiveMeiteiYear = useMemo(() => {
     if (todayDay) {
       return Translator.getMeiteiYear(todayDay.gregorian, todayDay.month);
     }
     return 3424;
   }, [todayDay]);
+
+  const [selectedMeiteiYear, setSelectedMeiteiYear] = useState<number>(() => {
+    if (todayDay) {
+      return Translator.getMeiteiYear(todayDay.gregorian, todayDay.month);
+    }
+    return 3424;
+  });
+  const minMeiteiYear = 3423;
+  const maxMeiteiYear = 3425;
 
   const gregorianCycle = useMemo(() => {
     switch (selectedMeiteiYear) {
@@ -116,6 +98,32 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
   // Track active selected month for the direction compass
   const [selectedMonth, setSelectedMonth] = useState<string>('');
   const [selectedDirection, setSelectedDirection] = useState<string>('');
+  const activeMonthRef = useRef<HTMLButtonElement | null>(null);
+
+  // Switch tabs & always reset state to current active year & current active month
+  const handleSelectTab = (tabName: TabType) => {
+    setActiveTab(tabName);
+    setSelectedMeiteiYear(currentActiveMeiteiYear);
+    const todayMonth = todayDay?.month || '';
+    if (todayMonth && monthConfigs[todayMonth]) {
+      setSelectedMonth(todayMonth);
+      setSelectedDirection(monthConfigs[todayMonth].thasiMaikei || 'CHINGKHEI');
+    }
+  };
+
+  // Auto-scroll horizontal carousel so active / current month is centered
+  useEffect(() => {
+    if (activeTab === 'Maikei') {
+      const timer = setTimeout(() => {
+        activeMonthRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest'
+        });
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+  }, [activeTab, selectedMonth]);
 
   // Traditional sequence of Meitei Calendar Months
   const baseSequence = [
@@ -174,18 +182,22 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
   // Sync selected month for compass
   useEffect(() => {
     if (sortedMonths.length > 0) {
+      const isCurrentYear = selectedMeiteiYear === currentActiveMeiteiYear;
       const todayMonth = todayDay?.month || '';
-      const matchingMonth = sortedMonths.find((m) => m.toUpperCase() === todayMonth.toUpperCase());
-      if (matchingMonth && monthConfigs[matchingMonth]) {
-        setSelectedMonth(matchingMonth);
-        setSelectedDirection(monthConfigs[matchingMonth].thasiMaikei || 'CHINGKHEI');
-      } else if (!selectedMonth || !monthConfigs[selectedMonth]) {
+      const matchingTodayMonth = sortedMonths.find((m) => m.toUpperCase() === todayMonth.toUpperCase());
+
+      if (isCurrentYear && matchingTodayMonth && monthConfigs[matchingTodayMonth]) {
+        // In current active year, focus on current month
+        setSelectedMonth(matchingTodayMonth);
+        setSelectedDirection(monthConfigs[matchingTodayMonth].thasiMaikei || 'CHINGKHEI');
+      } else {
+        // In a different year, start at Month 1 (first month of that year)
         const first = sortedMonths[0];
         setSelectedMonth(first);
         setSelectedDirection(monthConfigs[first]?.thasiMaikei || 'CHINGKHEI');
       }
     }
-  }, [sortedMonths, todayDay]);
+  }, [sortedMonths, selectedMeiteiYear, currentActiveMeiteiYear, todayDay, monthConfigs]);
 
   // Selected month config for inspector
   const activeSelectedConfig = useMemo(() => {
@@ -291,7 +303,7 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
                     if (!config) return null;
 
                     const isSelected = monthName === selectedMonth;
-                    const isCurrentCalendarMonth = todayDay?.month?.toUpperCase() === monthName.toUpperCase();
+                    const isCurrentCalendarMonth = selectedMeiteiYear === currentActiveMeiteiYear && todayDay?.month?.toUpperCase() === monthName.toUpperCase();
                     const monthDisplayName = Translator.translateMonth(monthName, languageMode, translations);
                     const directionDisplayName = Translator.translateDirection(config.thasiMaikei, languageMode, translations);
                     const season = getSeasonInfo(monthName, languageMode);
@@ -398,138 +410,14 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
             </div>
 
             {/* Circular Physical Compass Dial */}
-            <div className="relative w-[170px] h-[170px] select-none my-1">
-              <svg className="w-full h-full" viewBox="0 0 170 170">
-                {/* Outer Bezel */}
-                <circle
-                  cx="85"
-                  cy="85"
-                  r="78"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="text-gray-200 dark:text-gray-800"
-                />
-                {/* Hairline Decorative Ring */}
-                <circle
-                  cx="85"
-                  cy="85"
-                  r="66"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeDasharray="2 3"
-                  className="text-gray-300 dark:text-gray-700"
-                />
-                {/* 8 Cardinal & Ordinal Points */}
-                {COMPASS_DIAL_POINTS.map((pt) => {
-                  const rad = (pt.polarAngle * Math.PI) / 180;
-                  const isTarget = pt.key === activeDirection;
-                  const dotX = 85 + 56 * Math.cos(rad);
-                  const dotY = 85 + 56 * Math.sin(rad);
-
-                  return (
-                    <g key={pt.key}>
-                      {isTarget && (
-                        <circle
-                          cx={dotX}
-                          cy={dotY}
-                          r={7}
-                          className="stroke-rose-500 fill-rose-500/20 stroke-1.5"
-                        />
-                      )}
-                      <circle
-                        cx={dotX}
-                        cy={dotY}
-                        r={isTarget ? 3.5 : 2}
-                        className={isTarget ? 'fill-rose-600 dark:fill-rose-400' : 'fill-gray-300 dark:fill-gray-600'}
-                      />
-                    </g>
-                  );
-                })}
-
-                {/* Cardinal Text Labels */}
-                {COMPASS_DIAL_POINTS.map((pt) => {
-                  const rad = (pt.polarAngle * Math.PI) / 180;
-                  const isTarget = pt.key === activeDirection;
-                  const textX = 85 + 70 * Math.cos(rad);
-                  const textY = 85 + 70 * Math.sin(rad);
-
-                  return (
-                    <text
-                      key={`lbl-${pt.key}`}
-                      x={textX}
-                      y={textY}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fontSize={isTarget ? "10px" : "8px"}
-                      fontWeight={isTarget ? "900" : "700"}
-                      className={`select-none pointer-events-none transition-colors ${
-                        isTarget
-                          ? 'fill-rose-700 dark:fill-rose-400'
-                          : 'fill-gray-400 dark:fill-gray-500'
-                      }`}
-                    >
-                      {languageMode === LanguageMode.MEITEI_MAYEK ? pt.labelMayek : pt.labelEn}
-                    </text>
-                  );
-                })}
-
-                {/* Dynamic Rotating Pointer Needle with Symmetrical (0,0) Center Anchoring */}
-                <g transform="translate(85, 85)">
-                  <motion.g 
-                    animate={{ rotate: needleAngle }}
-                    transition={{ 
-                      type: 'spring', 
-                      stiffness: 90, 
-                      damping: 13,
-                      mass: 0.8
-                    }}
-                    style={{ 
-                      transformOrigin: 'center',
-                      transformBox: 'fill-box'
-                    }}
-                  >
-                    {/* Symmetrical bounding anchor ensures transform-origin: center is 100% locked to (0,0) */}
-                    <circle cx="0" cy="0" r="60" fill="none" opacity="0" pointerEvents="none" />
-
-                    {/* Active / Inauspicious Needle (Crimson Red with Specular Facet) */}
-                    <polygon
-                      points="0,-57 -3.5,0 0,-2"
-                      className="fill-rose-700 dark:fill-rose-500 filter drop-shadow(0 2px 4px rgba(190,18,60,0.35))"
-                    />
-                    <polygon
-                      points="0,-57 3.5,0 0,-2"
-                      className="fill-rose-500 dark:fill-rose-400"
-                    />
-                    
-                    {/* Counterweight (Slate Dark with Specular Facet) */}
-                    <polygon
-                      points="0,27 -3.5,0 0,2"
-                      className="fill-slate-600 dark:fill-slate-600"
-                    />
-                    <polygon
-                      points="0,27 3.5,0 0,2"
-                      className="fill-slate-400 dark:fill-slate-500"
-                    />
-
-                    {/* Center Brass Compass Jewel */}
-                    <circle
-                      cx="0"
-                      cy="0"
-                      r="5.5"
-                      className="fill-amber-400 stroke-amber-600 stroke-1 shadow-sm"
-                    />
-                    <circle
-                      cx="0"
-                      cy="0"
-                      r="2.5"
-                      className="fill-white"
-                    />
-                  </motion.g>
-                </g>
-              </svg>
-            </div>
+            <MaikeiCompass
+              selectedDirection={activeDirection}
+              selectedMonthName={selectedMonth}
+              languageMode={languageMode}
+              translations={translations}
+              showReadout={false}
+              className="my-1 w-[185px] lg:w-[200px]"
+            />
 
             {/* Readout */}
             <div className="text-center flex flex-col items-center">
@@ -639,7 +527,7 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
             return (
               <button
                 key={tabName}
-                onClick={() => setActiveTab(tabName)}
+                onClick={() => handleSelectTab(tabName)}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer select-none ${
                   isActive
                     ? 'bg-rose-500/15 text-rose-800 dark:text-rose-400 border border-rose-800/30 dark:border-rose-400/30 shadow-sm'
@@ -663,30 +551,26 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
           </div>
         ) : (
           <>
-            {/* --- MAIKEI TAB VIEW --- */}
+            {/* --- MAIKEI TAB VIEW (OPTION A: LIVE ASTROLABE WITH HORIZONTAL MONTH SELECTOR & ZERO SCROLL) --- */}
             {activeTab === 'Maikei' && (
-              <div className="flex flex-col items-center gap-4">
-                <p className="text-xs text-gray-500 dark:text-gray-400 w-full text-left">
-                  Where the new moon (Thasi) rests, month by month.
-                </p>
-
-                {/* Year Navigator */}
-                <div className="flex items-center justify-center gap-6 py-1">
+              <div className="flex flex-col items-center gap-2 w-full">
+                {/* Compact Centered Year Navigator */}
+                <div className="flex items-center justify-center gap-5 py-0.5">
                   <button
                     onClick={() => {
                       if (selectedMeiteiYear > minMeiteiYear) setSelectedMeiteiYear(selectedMeiteiYear - 1);
                     }}
                     disabled={selectedMeiteiYear <= minMeiteiYear}
-                    className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                    className="p-1.5 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                     title="Previous Year"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="w-4 h-4" />
                   </button>
                   <div className="flex flex-col items-center text-center">
-                    <span className="text-2xl font-black text-rose-900 dark:text-rose-100 tracking-tight">
+                    <span className="text-xl font-black text-rose-900 dark:text-rose-100 tracking-tight leading-none">
                       {Translator.translateDigits(selectedMeiteiYear.toString(), languageMode, translations)}
                     </span>
-                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+                    <span className="text-[10.5px] font-bold text-gray-500 dark:text-gray-400 mt-0.5">
                       MP {selectedMeiteiYear} · {gregorianCycle}
                     </span>
                   </div>
@@ -695,341 +579,219 @@ export const AlmanacTab: React.FC<AlmanacTabProps> = ({
                       if (selectedMeiteiYear < maxMeiteiYear) setSelectedMeiteiYear(selectedMeiteiYear + 1);
                     }}
                     disabled={selectedMeiteiYear >= maxMeiteiYear}
-                    className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                    className="p-1.5 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                     title="Next Year"
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
 
-                {/* Compass Graphic */}
+                {/* Animated Interactive Compass Graphic */}
                 <MaikeiCompass
                   selectedDirection={selectedDirection}
                   selectedMonthName={selectedMonth}
                   languageMode={languageMode}
                   translations={translations}
+                  showReadout={true}
+                  className="my-1 w-[200px] sm:w-[220px]"
                 />
 
-                {/* Scrollable Month List */}
-                <div className="w-full flex flex-col gap-1.5 mt-2">
-                  {sortedMonths.map((monthName) => {
-                    const config = monthConfigs[monthName];
-                    if (!config) return null;
-                    const isSelected = monthName === selectedMonth;
-                    const monthDisplayName = Translator.translateMonth(monthName, languageMode, translations);
-                    const directionNameNative = Translator.translateDirection(config.thasiMaikei, languageMode, translations);
-                    const directionNameEng = config.thasiMaikei.charAt(0).toUpperCase() + config.thasiMaikei.slice(1).toLowerCase();
-
-                    return (
-                      <div
-                        key={monthName}
-                        onClick={() => {
-                          setSelectedMonth(monthName);
-                          setSelectedDirection(config.thasiMaikei);
-                        }}
-                        className={`w-full px-4 py-3 rounded-2xl flex items-center justify-between cursor-pointer transition-all ${
-                          isSelected
-                            ? 'bg-rose-500/15 dark:bg-rose-500/20 border border-rose-800/30 dark:border-rose-400/30 shadow-sm'
-                            : 'bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-850'
-                        }`}
-                      >
-                        <span className={`text-sm ${
-                          isSelected ? 'font-black text-rose-900 dark:text-rose-200' : 'font-bold text-gray-800 dark:text-gray-200'
-                        }`}>
-                          {monthDisplayName}
-                        </span>
-                        <div className="flex items-center gap-2">
-                          <span className={`text-xs font-black ${
-                            isSelected ? 'text-rose-800 dark:text-rose-400' : 'text-gray-700 dark:text-gray-300'
-                          }`}>
-                            {directionNameNative}
-                          </span>
-                          <span className="text-[11px] font-medium text-gray-400 dark:text-gray-500">
-                            {directionNameEng}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* --- TATNABA TAB VIEW --- */}
-            {activeTab === 'Tatnaba' && (
-              <div className="flex flex-col gap-4">
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Days to avoid in each month of Meitei year {selectedMeiteiYear}.
-                </p>
-
-                {/* Year Navigator */}
-                <div className="flex items-center justify-center gap-6 py-1">
-                  <button
-                    onClick={() => {
-                      if (selectedMeiteiYear > minMeiteiYear) setSelectedMeiteiYear(selectedMeiteiYear - 1);
-                    }}
-                    disabled={selectedMeiteiYear <= minMeiteiYear}
-                    className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-                    title="Previous Year"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <div className="flex flex-col items-center text-center">
-                    <span className="text-2xl font-black text-rose-900 dark:text-rose-100 tracking-tight">
-                      {Translator.translateDigits(selectedMeiteiYear.toString(), languageMode, translations)}
+                {/* Horizontal Scrolling Month Selector Carousel */}
+                <div className="w-full flex flex-col gap-1.5 mt-0.5">
+                  <div className="flex items-center justify-between px-0.5">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-400">
+                      {languageMode === LanguageMode.BENGALI ? 'মাস নির্বাচন করুন' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯊꯥ ꯈꯜꯂꯨ' : 'SELECT MONTH'}
                     </span>
-                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-                      MP {selectedMeiteiYear} · {gregorianCycle}
+                    <span className="text-[9.5px] font-bold text-gray-400">
+                      {selectedMonth} ({Translator.translateDirection(monthConfigs[selectedMonth]?.thasiMaikei || '', languageMode, translations)})
                     </span>
                   </div>
-                  <button
-                    onClick={() => {
-                      if (selectedMeiteiYear < maxMeiteiYear) setSelectedMeiteiYear(selectedMeiteiYear + 1);
-                    }}
-                    disabled={selectedMeiteiYear >= maxMeiteiYear}
-                    className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-                    title="Next Year"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
+
+                  <div className="flex gap-2 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory scrollbar-none">
+                    {sortedMonths
+                      .filter((m) => !m.toUpperCase().includes('LEAP'))
+                      .map((monthName, idx) => {
+                        const config = monthConfigs[monthName];
+                        if (!config) return null;
+                        const isSelected = monthName === selectedMonth;
+                        const isCurrentCalendarMonth = selectedMeiteiYear === currentActiveMeiteiYear && todayDay?.month?.toUpperCase() === monthName.toUpperCase();
+                        const monthDisplayName = Translator.translateMonth(monthName, languageMode, translations);
+
+                        return (
+                          <button
+                            key={monthName}
+                            ref={isSelected ? activeMonthRef : undefined}
+                            onClick={() => {
+                              setSelectedMonth(monthName);
+                              setSelectedDirection(config.thasiMaikei);
+                            }}
+                            className={`shrink-0 snap-start px-3 py-2 rounded-2xl flex items-center gap-1.5 border transition-all cursor-pointer select-none ${
+                              isSelected
+                                ? 'bg-rose-800 text-white dark:bg-rose-600 border-rose-800 dark:border-rose-500 shadow-md ring-2 ring-rose-500/20'
+                                : isCurrentCalendarMonth
+                                  ? 'border-2 border-rose-500 bg-rose-500/10 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200'
+                                  : 'bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-850'
+                            }`}
+                          >
+                            <span className={`text-[10px] font-bold ${isSelected ? 'text-rose-200' : 'text-gray-400 dark:text-gray-500'}`}>
+                              {Translator.translateDigits((idx + 1).toString().padStart(2, '0'), languageMode, translations)}
+                            </span>
+                            <span className="text-xs font-black truncate">
+                              {monthDisplayName}
+                            </span>
+                            {isCurrentCalendarMonth && (
+                              <span className={`text-[7.5px] font-black px-1.5 py-0.2 rounded uppercase tracking-wider ${
+                                isSelected ? 'bg-white/20 text-white' : 'bg-rose-600 text-white dark:bg-rose-500 dark:text-rose-950'
+                              }`}>
+                                {languageMode === LanguageMode.BENGALI ? 'চলতি' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯉꯁꯤ' : 'Now'}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                  </div>
                 </div>
 
-                {/* 3-Column Grid of Month Cards */}
-                <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
-                  {sortedMonths
-                    .filter((m) => !m.toUpperCase().includes('LEAP'))
-                    .map((monthName) => {
-                      const config = monthConfigs[monthName];
-                      if (!config) return null;
-                      const monthDisplayName = Translator.translateMonth(monthName, languageMode, translations);
-                      const tatnabaDaysStr = config.tatnaba.length === 0
-                        ? 'None'
-                        : config.tatnaba.map((weekday) => Translator.translateWeekdayShort(weekday, languageMode, translations)).join(', ');
-
-                      return (
-                        <div
-                          key={monthName}
-                          className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-3 flex flex-col items-center justify-center text-center gap-1 shadow-sm min-h-[105px]"
-                        >
-                          <h4 className="text-xs sm:text-sm font-black text-rose-800 dark:text-rose-400 truncate w-full">
-                            {monthDisplayName}
-                          </h4>
-                          <span className="text-[9px] font-bold text-red-500/80 uppercase tracking-wider">
-                            Tatnaba
-                          </span>
-                          <span className={`text-[11px] font-bold ${
-                            config.tatnaba.length === 0
-                              ? 'text-gray-400 dark:text-gray-500'
-                              : 'text-red-600 dark:text-red-400'
-                          } truncate w-full`}>
-                            {tatnabaDaysStr}
-                          </span>
-                        </div>
-                      );
-                    })}
-                </div>
-
-                {/* Warning Proverb Footer Banner */}
-                <div className="mt-4 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-center">
-                  <p className="text-sm font-black text-red-600 dark:text-red-400">
-                    {languageMode === LanguageMode.BENGALI
-                      ? 'তৎনবা নুমিত্তা অফবা থবক তৌবা ফত্তে'
-                      : 'ꯇꯥꯠꯅꯥꯕꯥ ꯅꯨꯃꯤꯠ ꯇꯥ ꯑꯐꯕ ꯊꯕꯛ ꯇꯧꯕ ꯐꯠꯇꯦ'}
-                  </p>
-                  <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-1 font-medium">
-                    Traditional Astrological Guidance: Avoid embarking on auspicious ventures on Tatnaba days.
-                  </p>
+                {/* Directional Astrological Guidance Card */}
+                <div className="w-full p-3 rounded-2xl bg-gradient-to-r from-rose-500/10 via-amber-500/5 to-transparent dark:from-rose-950/30 dark:via-amber-950/10 border border-rose-500/20 shadow-sm flex items-start gap-3 mt-0.5">
+                  <div className="w-8 h-8 rounded-xl bg-rose-500/20 dark:bg-rose-500/30 flex items-center justify-center text-rose-800 dark:text-rose-300 shrink-0 mt-0.5">
+                    <Compass className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-black text-gray-900 dark:text-white truncate">
+                        {Translator.translateDirection(monthConfigs[selectedMonth]?.thasiMaikei || '', languageMode, translations)} · {DIRECTION_METADATA[monthConfigs[selectedMonth]?.thasiMaikei]?.en || monthConfigs[selectedMonth]?.thasiMaikei}
+                      </span>
+                      <span className="text-[8.5px] font-bold px-1.5 py-0.2 rounded bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-200 dark:border-rose-900/40 uppercase">
+                        Inauspicious
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-gray-600 dark:text-gray-400 mt-0.5 leading-snug">
+                      {languageMode === LanguageMode.BENGALI
+                        ? `${Translator.translateMonth(selectedMonth, languageMode, translations)} মাসে এই দিকে যাত্রা ও শুভ কাজ বর্জনীয়।`
+                        : languageMode === LanguageMode.MEITEI_MAYEK
+                          ? `${Translator.translateMonth(selectedMonth, languageMode, translations)} ꯊꯥꯁꯤꯗ ꯃꯥꯏꯀꯩ ꯑꯁꯤꯗ ꯈꯣꯡꯆꯠ ꯆꯠꯂꯣꯏꯗꯕꯅꯤ꯫`
+                          : `Where the new moon resides. Journeys directed towards ${DIRECTION_METADATA[monthConfigs[selectedMonth]?.thasiMaikei]?.en || monthConfigs[selectedMonth]?.thasiMaikei} are ill-omened in ${selectedMonth}.`}
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
+
+            {/* --- TATNABA TAB VIEW (COMPACT 2-COLUMN DIRECTORY WITH ZERO SCROLL) --- */}
+            {activeTab === 'Tatnaba' && (() => {
+              const nonLeapMonths = sortedMonths.filter((m) => !m.toUpperCase().includes('LEAP'));
+              const col1Months = nonLeapMonths.slice(0, 6);
+              const col2Months = nonLeapMonths.slice(6, 12);
+
+              const renderMonthRow = (monthName: string, indexNumber: number) => {
+                const config = monthConfigs[monthName];
+                if (!config) return null;
+                const isCurrentCalendarMonth = selectedMeiteiYear === currentActiveMeiteiYear && todayDay?.month?.toUpperCase() === monthName.toUpperCase();
+                const monthDisplayName = Translator.translateMonth(monthName, languageMode, translations);
+                const tatnabaDaysStr = config.tatnaba.length === 0
+                  ? (languageMode === LanguageMode.BENGALI ? 'নেই' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯂꯩꯇꯦ' : 'None')
+                  : config.tatnaba.map((weekday) => Translator.translateWeekdayShort(weekday, languageMode, translations)).join(', ');
+
+                return (
+                  <div
+                    key={monthName}
+                    className={`px-3 py-2.5 rounded-2xl border flex items-center justify-between gap-1.5 transition-all select-none min-h-[46px] ${
+                      isCurrentCalendarMonth
+                        ? 'border-2 border-rose-600 dark:border-rose-500 bg-gradient-to-r from-rose-50/95 via-amber-50/40 to-transparent dark:from-rose-950/45 dark:via-amber-950/25 shadow-md ring-1 ring-rose-500/20'
+                        : 'border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-900 shadow-sm'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className={`text-[10px] shrink-0 ${isCurrentCalendarMonth ? 'text-rose-800 dark:text-rose-400 font-black' : 'text-gray-400 dark:text-gray-500 font-bold'}`}>
+                        {Translator.translateDigits(indexNumber.toString().padStart(2, '0'), languageMode, translations)}
+                      </span>
+                      <span className={`text-xs sm:text-sm font-black truncate ${isCurrentCalendarMonth ? 'text-rose-950 dark:text-rose-100' : 'text-gray-900 dark:text-white'}`}>
+                        {monthDisplayName}
+                      </span>
+                      {isCurrentCalendarMonth && (
+                        <span className="text-[7.5px] font-black px-1.5 py-0.5 rounded-md bg-rose-600 text-white dark:bg-rose-500 dark:text-rose-950 uppercase tracking-wider shrink-0 shadow-sm">
+                          {languageMode === LanguageMode.BENGALI ? 'চলতি' : languageMode === LanguageMode.MEITEI_MAYEK ? 'ꯉꯁꯤ' : 'Current'}
+                        </span>
+                      )}
+                    </div>
+
+                    <span className={`text-xs font-bold shrink-0 ${
+                      config.tatnaba.length === 0
+                        ? 'text-gray-400 dark:text-gray-500 font-semibold'
+                        : isCurrentCalendarMonth
+                          ? 'text-rose-700 dark:text-rose-300 font-black'
+                          : 'text-red-600 dark:text-red-400 font-extrabold'
+                    }`}>
+                      {tatnabaDaysStr}
+                    </span>
+                  </div>
+                );
+              };
+
+              return (
+                <div className="flex flex-col gap-3">
+                  {/* Centered Dignified Year Navigator */}
+                  <div className="relative flex items-center justify-center gap-6 py-1">
+                    <button
+                      onClick={() => {
+                        if (selectedMeiteiYear > minMeiteiYear) setSelectedMeiteiYear(selectedMeiteiYear - 1);
+                      }}
+                      disabled={selectedMeiteiYear <= minMeiteiYear}
+                      className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                      title="Previous Year"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl font-black text-rose-900 dark:text-rose-100 tracking-tight leading-none">
+                        {Translator.translateDigits(selectedMeiteiYear.toString(), languageMode, translations)}
+                      </span>
+                      <span className="text-[11px] font-bold text-gray-500 dark:text-gray-400 mt-1">
+                        MP {selectedMeiteiYear} · {gregorianCycle}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        if (selectedMeiteiYear < maxMeiteiYear) setSelectedMeiteiYear(selectedMeiteiYear + 1);
+                      }}
+                      disabled={selectedMeiteiYear >= maxMeiteiYear}
+                      className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                      title="Next Year"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  {/* 2-Column Almanac Directory (6 Rows Each, Apple-standard 46px touch targets) */}
+                  <div className="grid grid-cols-2 gap-2.5">
+                    {/* Left Column: Months 01 to 06 */}
+                    <div className="flex flex-col gap-2">
+                      {col1Months.map((m, idx) => renderMonthRow(m, idx + 1))}
+                    </div>
+
+                    {/* Right Column: Months 07 to 12 */}
+                    <div className="flex flex-col gap-2">
+                      {col2Months.map((m, idx) => renderMonthRow(m, idx + 7))}
+                    </div>
+                  </div>
+
+                  {/* Traditional Warning Proverb Footer Banner (Exact Wording Preserved) */}
+                  <div className="p-3 sm:p-3.5 rounded-2xl bg-red-500/10 border border-red-500/20 text-center shadow-sm">
+                    <p className="text-xs sm:text-sm font-black text-red-600 dark:text-red-400 leading-tight">
+                      {languageMode === LanguageMode.BENGALI
+                        ? 'তৎনবা নুমিত্তা অফবা থবক তৌবা ফত্তে'
+                        : 'ꯇꯥꯠꯅꯥꯕꯥ ꯅꯨꯃꯤꯠ ꯇꯥ ꯑꯐꯕ ꯊꯕꯛ ꯇꯧꯕ ꯐꯠꯇꯦ'}
+                    </p>
+                    <p className="text-[9.5px] sm:text-[10px] text-gray-500 dark:text-gray-400 mt-1 font-medium leading-snug">
+                      Traditional Astrological Guidance: Avoid embarking on auspicious ventures on Tatnaba days.
+                    </p>
+                  </div>
+                </div>
+              );
+            })()}
           </>
         )}
-      </div>
-    </div>
-  );
-};
-
-interface MaikeiCompassProps {
-  selectedDirection: string;
-  selectedMonthName: string;
-  languageMode: LanguageMode;
-  translations: Translations | null;
-}
-
-const MaikeiCompass: React.FC<MaikeiCompassProps> = ({
-  selectedDirection,
-  selectedMonthName,
-  languageMode,
-  translations
-}) => {
-  // 8 traditional Meitei directions with angles
-  const directions = [
-    { key: 'AWANG', angle: 270 },
-    { key: 'CHINGKHEI', angle: 315 },
-    { key: 'NONGPOK', angle: 0 },
-    { key: 'MEIRAM', angle: 45 },
-    { key: 'KHA', angle: 90 },
-    { key: 'SANTHONG', angle: 135 },
-    { key: 'NONGCHUP', angle: 180 },
-    { key: 'KOUBRU', angle: 225 }
-  ];
-
-  const outerRadius = 108;
-  const innerRadius = 76;
-  const textRadius = 92;
-  const center = 120; // 240 / 2
-
-  const needleAngle = DIRECTION_METADATA[selectedDirection?.toUpperCase()]?.needleAngle ?? 45;
-  const dirDisplayNative = Translator.translateDirection(selectedDirection, languageMode, translations);
-  const dirDisplayEng = selectedDirection ? selectedDirection.charAt(0).toUpperCase() + selectedDirection.slice(1).toLowerCase() : '';
-  const translatedMonth = Translator.translateMonth(selectedMonthName, languageMode, translations);
-
-  return (
-    <div className="flex flex-col items-center my-2 select-none">
-      <div className="relative w-[240px] h-[240px]">
-        {/* SVG Circular Tracks */}
-        <svg className="w-full h-full" viewBox="0 0 240 240">
-          {/* Outer track */}
-          <circle
-            cx={center}
-            cy={center}
-            r={outerRadius}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-gray-200 dark:text-gray-800"
-          />
-          {/* Inner track */}
-          <circle
-            cx={center}
-            cy={center}
-            r={innerRadius}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-gray-200 dark:text-gray-800"
-          />
-
-          {/* Direction Points & Dots */}
-          {directions.map(({ key, angle }) => {
-            const rad = (angle * Math.PI) / 180;
-            const isSelected = key.toUpperCase() === selectedDirection.toUpperCase();
-
-            const dotX = center + innerRadius * Math.cos(rad);
-            const dotY = center + innerRadius * Math.sin(rad);
-
-            return (
-              <g key={key}>
-                {isSelected && (
-                  <circle
-                    cx={dotX}
-                    cy={dotY}
-                    r={8}
-                    className="stroke-rose-500 fill-rose-500/20 stroke-1.5"
-                  />
-                )}
-                <circle
-                  cx={dotX}
-                  cy={dotY}
-                  r={isSelected ? 4.5 : 2.5}
-                  className={isSelected ? 'fill-rose-700 dark:fill-rose-400' : 'fill-gray-300 dark:fill-gray-700'}
-                />
-              </g>
-            );
-          })}
-
-          {/* Dynamic Rotating Pointer Needle with Symmetrical (0,0) Center Anchoring */}
-          <g transform={`translate(${center}, ${center})`}>
-            <motion.g 
-              animate={{ rotate: needleAngle }}
-              transition={{ 
-                type: 'spring', 
-                stiffness: 90, 
-                damping: 13,
-                mass: 0.8
-              }}
-              style={{ 
-                transformOrigin: 'center',
-                transformBox: 'fill-box'
-              }}
-            >
-              {/* Symmetrical bounding anchor ensures transform-origin: center is 100% locked to (0,0) */}
-              <circle cx="0" cy="0" r="85" fill="none" opacity="0" pointerEvents="none" />
-
-              {/* Active / Inauspicious Needle (Crimson Red with Specular Facet) */}
-              <polygon
-                points="0,-75 -4,0 0,-3"
-                className="fill-rose-700 dark:fill-rose-500 filter drop-shadow(0 2px 4px rgba(190,18,60,0.35))"
-              />
-              <polygon
-                points="0,-75 4,0 0,-3"
-                className="fill-rose-500 dark:fill-rose-400"
-              />
-              
-              {/* Counterweight */}
-              <polygon
-                points="0,36 -4,0 0,3"
-                className="fill-slate-600 dark:fill-slate-600"
-              />
-              <polygon
-                points="0,36 4,0 0,3"
-                className="fill-slate-400 dark:fill-slate-500"
-              />
-
-              {/* Center Brass Compass Jewel */}
-              <circle
-                cx="0"
-                cy="0"
-                r="7"
-                className="fill-amber-400 stroke-amber-600 stroke-1 shadow-sm"
-              />
-              <circle
-                cx="0"
-                cy="0"
-                r="3"
-                className="fill-white"
-              />
-            </motion.g>
-          </g>
-        </svg>
-
-        {/* Direction Text Labels in Channel */}
-        {directions.map(({ key, angle }) => {
-          const rad = (angle * Math.PI) / 180;
-          const isSelected = key.toUpperCase() === selectedDirection.toUpperCase();
-
-          const labelX = center + textRadius * Math.cos(rad);
-          const labelY = center + textRadius * Math.sin(rad);
-
-          return (
-            <div
-              key={key}
-              style={{
-                position: 'absolute',
-                left: `${labelX}px`,
-                top: `${labelY}px`,
-                transform: 'translate(-50%, -50%)'
-              }}
-              className={`text-[9.5px] whitespace-nowrap transition-colors pointer-events-none ${
-                isSelected
-                  ? 'font-black text-rose-800 dark:text-rose-400'
-                  : 'font-semibold text-gray-400 dark:text-gray-500'
-              }`}
-            >
-              {Translator.translateDirection(key, languageMode, translations)}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Clear Readout Text below Dial */}
-      <div className="flex flex-col items-center text-center mt-2">
-        <span className="text-base font-black text-gray-900 dark:text-white leading-tight">
-          {dirDisplayNative} · {dirDisplayEng}
-        </span>
-        <span className="text-[11px] font-bold text-rose-800 dark:text-rose-400 mt-0.5">
-          Thasi maikei - {translatedMonth}
-        </span>
       </div>
     </div>
   );

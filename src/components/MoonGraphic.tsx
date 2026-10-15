@@ -1,20 +1,20 @@
 import React from 'react';
 
 interface MoonGraphicProps {
-  phase: string; // 'purnima' | 'thasi' | 'ekadasi'
+  phase?: string; // 'purnima' | 'thasi' | 'ekadasi'
   moonPhase?: string; // 'waning' | 'waxing'
   size?: number | string;
   className?: string;
 }
 
 export const MoonGraphic: React.FC<MoonGraphicProps> = ({
-  phase,
+  phase = '',
   moonPhase = 'waxing',
   size = 48,
   className = ''
 }) => {
-  const normPhase = phase.toLowerCase();
-  const normMoonPhase = moonPhase ? moonPhase.toLowerCase() : 'waxing';
+  const normPhase = (phase || '').toLowerCase();
+  const normMoonPhase = (moonPhase || 'waxing').toLowerCase();
 
   const pixelSize = typeof size === 'number' ? `${size}px` : size;
 

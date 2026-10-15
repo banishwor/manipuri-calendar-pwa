@@ -45,6 +45,7 @@ These events occur on the **exact same Gregorian date (`MM-DD`)** every single y
 | **09-17** | `vishwakarma_puja` | Vishwakarma Puja | Festival |
 | **09-30** | `irabot_day` | Irabot Day (Jan Neta Hijam Irabot Day) | **State Holiday** |
 | **10-02** | `gandhi_jayanti` | Gandhi Jayanti | **National Holiday** |
+| **10-19** | `manipur_police_day` | Manipur Police Day | Commemoration |
 | **10-24** | `u_n_day` | United Nations Day | Global Observance |
 | **11-14** | `childrens_day` | Children's Day | Observance |
 | **12-12** | `nupi_lan` | Nupi Lan Memorial Day | **State Holiday** |
@@ -94,8 +95,8 @@ These events occur on the **exact same Meitei Month and lunar Day number** every
 | **LANGBAN 16** | `tarpan_houba` | Langban Tarpan Houba | Ancestral Offerings Start |
 | **LANGBAN 30** | `tarpan_loiba` | Langban Tarpan Loiba | Ancestral Offerings End |
 | **MERA 1** | `mera_chouren_houba` | Mera Chaoren Houba | **State Holiday** |
-| **MERA 7 & 8** | `durga_puja`, `bor_numit` | Durga Puja & Mera Bor Numit | **State Holiday** |
-| **MERA 10** | `police_day_kwak_tanba` | Manipur Police Day & Kwak Tanba (Dussehra)| **State Holiday** |
+| **MERA 7 & 8** | `durga_puja`, `bor_numit` | Durga Puja (Mera 7) & Bor Numit (Mera 8) | Festival & Ritual |
+| **MERA 10** | `kwak_tanba` | Kwak Tanba (Dussehra) | Cultural Ritual |
 | **MERA 15** | `mera_hou_chongba` | Mera Houchongba (Hills & Valley Unity) | **State Holiday** |
 | **MERA 17** | `meitei_puya_meithaba` | Puya Meithaba Day | Memorial Observance |
 | **MERA 30** | `diwali` | Diwali (Deepavali) | **State Holiday** |

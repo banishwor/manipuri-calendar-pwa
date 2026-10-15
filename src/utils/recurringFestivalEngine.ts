@@ -50,6 +50,7 @@ const FIXED_GREGORIAN_EVENTS: Record<string, string[]> = {
   '08-29': ['hai_pou_jadonang_leikhidaba_numit'],
   '09-03': ['laininghal_fullo_pokpa'],
   '09-05': ['teachers_day'],
+  '10-19': ['manipur_police_day'],
   '10-24': ['u_n_day'],
   '11-14': ['childrens_day'],
   '12-31': ['bye_bye']
@@ -75,7 +76,6 @@ const FIXED_MEITEI_FESTIVALS: Record<string, string[]> = {
   'MERA_1': ['mera_chouren_houba'],
   'MERA_7': ['durga_puja'],
   'MERA_8': ['bor_numit'],
-  'MERA_10': ['police_day_kwak_tanba'],
   'MERA_15': ['mera_hou_chongba'],
   'MERA_30': ['diwali'],
   'HIYANGEI_1': ['gorbardhan_puja'],
@@ -101,6 +101,7 @@ const FIXED_MEITEI_EVENTS: Record<string, string[]> = {
   'LANGBAN_12': ['braman_janama'],
   'LANGBAN_16': ['tarpan_houba'],
   'LANGBAN_30': ['tarpan_loiba'],
+  'MERA_10': ['kwak_tanba'],
   'MERA_17': ['meitei_puya_meithaba'], // Puya Meithaba Memorial Day (NOT a festival)
   'HIYANGEI_8': ['san_senba'],
   'HIYANGEI_12': ['tulsi_bhiva_hari_uthan'],

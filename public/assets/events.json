@@ -421,17 +421,24 @@
   },
   {
     "id": "bor_numit",
-    "name": "Mera Bor Numit",
+    "name": "Bor Numit",
     "category": "ritual",
     "isHoliday": false,
     "description": "The special day of receiving blessings (Bor) during Durga Puja festivities."
   },
   {
-    "id": "police_day_kwak_tanba",
-    "name": "Manipur Police Day & Kwak Tanba",
+    "id": "kwak_tanba",
+    "name": "Kwak Tanba",
+    "category": "ritual",
+    "isHoliday": false,
+    "description": "Ancient Meitei ritual of releasing crows (Kwak) at the Kangla sanctuary."
+  },
+  {
+    "id": "manipur_police_day",
+    "name": "Manipur Police Day",
     "category": "commemoration",
     "isHoliday": false,
-    "description": "Manipur Police Raising Day accompanied by Kwak Tanba (traditional ritual chasing away crows)."
+    "description": "Raising Day of Manipur Police, constituted on 19th October 1891."
   },
   {
     "id": "u_n_day",

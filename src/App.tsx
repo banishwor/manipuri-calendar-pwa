@@ -197,7 +197,7 @@ export default function App() {
     return () => { active = false; };
   }, [currentYear, currentMonth, initialized]);
 
-  // --- UPCOMING HOLIDAYS COUNTDOWN CALCULATION ---
+  // --- UPCOMING EVENTS COUNTDOWN CALCULATION ---
   const upcomingFestivals = useMemo(() => {
     if (!initialized || daysOfMonth.length === 0) return [];
     
@@ -220,21 +220,27 @@ export default function App() {
         const dateObj = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
         dateObj.setHours(0, 0, 0, 0);
 
-        if (dateObj >= today && day.festivals && day.festivals.length > 0) {
-          const matchedEvents = day.festivals
-            .map((id) => eventsList.find((e) => e.id === id))
-            .filter(Boolean) as Event[];
+        if (dateObj >= today) {
+          // Merge festivals and events, strictly excluding '2nd_saturday'
+          const allIds = Array.from(new Set([...(day.festivals || []), ...(day.events || [])]))
+            .filter((id) => id !== '2nd_saturday');
 
-          if (matchedEvents.length > 0) {
-            const timeDiff = dateObj.getTime() - today.getTime();
-            const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            
-            return {
-              date: day.gregorian,
-              dayData: day,
-              events: matchedEvents,
-              daysRemaining: daysDiff
-            };
+          if (allIds.length > 0) {
+            const matchedEvents = allIds
+              .map((id) => eventsList.find((e) => e.id === id))
+              .filter(Boolean) as Event[];
+
+            if (matchedEvents.length > 0) {
+              const timeDiff = dateObj.getTime() - today.getTime();
+              const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+              
+              return {
+                date: day.gregorian,
+                dayData: day,
+                events: matchedEvents,
+                daysRemaining: daysDiff
+              };
+            }
           }
         }
         return null;
