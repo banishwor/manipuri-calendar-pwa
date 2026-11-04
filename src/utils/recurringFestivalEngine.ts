@@ -53,15 +53,18 @@ const FIXED_GREGORIAN_EVENTS: Record<string, string[]> = {
   '10-19': ['manipur_police_day'],
   '10-24': ['u_n_day'],
   '11-14': ['childrens_day'],
+  '11-21': ['sangai_festival_houba'],
+  '11-30': ['sangai_festival_loiba'],
   '12-31': ['bye_bye']
 };
 
 const FIXED_MEITEI_FESTIVALS: Record<string, string[]> = {
+  'WAKCHING_12': ['imoinu_iratpa'],
   'WAKCHING_13': ['gaan_ngai'],
   'PHAIREN_5': ['swrasati_puja'],
   'PHAIREN_29': ['sivarati'],
   'LAMTA_15': ['yaoshang_meithaba'],
-  'LAMTA_16': ['pechakari'],
+  'LAMTA_16': ['yaoshang_2nd'],
   'LAMTA_20': ['hallangkar'],
   'LAMTA_28': ['baruni_chingoi_lruppa'],
   'SAJIBU_1': ['cheiraoba'],
@@ -79,14 +82,14 @@ const FIXED_MEITEI_FESTIVALS: Record<string, string[]> = {
   'MERA_15': ['mera_hou_chongba'],
   'MERA_30': ['diwali'],
   'HIYANGEI_1': ['gorbardhan_puja'],
-  'HIYANGEI_2': ['ningol_chakouba_numit'],
-  'POINU_12': ['imoinu_iratpa']
+  'HIYANGEI_2': ['ningol_chakouba_numit']
 };
 
 const FIXED_MEITEI_EVENTS: Record<string, string[]> = {
   'WAKCHING_15': ['ayang_leima_kabok_chaiba'],
   'PHAIREN_4': ['ganesh_puja'],
   'LAMTA_7': ['shree_govhindagi_holi_houba_numit'],
+  'LAMTA_16': ['pechakari'],
   'SAJIBU_7': ['kongba_laithong_fatpa'],
   'KALEN_9': ['sita_navami'],
   'KALEN_15': ['jatra_kali'],
